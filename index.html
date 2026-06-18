@@ -9,195 +9,302 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oldenburg&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap"
+        rel="stylesheet">
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap');
 
-<body>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap');
+    body {
+        overflow-x: hidden;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .navbar {
+        display: flex;
+        font-family: "Noto Sans", sans-serif;
+        background: white;
+        position: fixed;
+        top: 5px;
+        margin: 1% 2%;
+        width: 96%;
+        padding: 10px;
+        border-radius: 10px;
+        gap: clamp(20px, 3vw, 50px);
+        justify-content: space-between;
+        box-shadow: 5px 5px 30px gray;
+    }
 
-        body {
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            display: flex;
-            font-family: "Noto Sans", sans-serif;
-            background: white;
-            position: fixed;
-            margin:1% 2%;
-            width: 96%;
-            padding: 10px;
-            border-radius: 10px;
-            gap: clamp(20px,3vw,50px);
-            justify-content: space-between;
-            box-shadow: 5px 5px 30px gray;
-        }
-
-        .logo img {
-            width: clamp(140px, 180vw, 200px);
-            flex: 1;
-        }
+    .logo img {
+        width: clamp(140px, 180vw, 200px);
+        flex: 1;
+    }
 
 
-        .menus {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex: 2;
-        }
+    .menus {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 2;
+    }
+
+    .menus ul {
+        display: flex;
+        justify-content: flex-start;
+        flex: 1;
+        gap: 40px;
+    }
+
+    .menus ul li {
+        color: green;
+    }
+
+    .menus ul li a {
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        font-weight: 600;
+    }
+
+    .bar2 {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex: 1;
+        justify-content: right;
+    }
+
+    .bar2 span {
+        font-size: 25px;
+        color: green;
+    }
+
+    .call-btn {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: nowrap;
+
+    }
+
+    .call-btn p {
+        font-size: 15px;
+        text-wrap: nowrap;
+        font-weight: 600;
+    }
+
+    .nav-btn {
+        font-size: 18px;
+        font-weight: 600;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+    }
+
+    .nav-btn.btn2 {
+        display: none;
+    }
+
+    .menuwraper a {
+        text-decoration: none;
+    }
+
+    .bar3 {
+        display: none;
+    }
+
+    @media (max-width:1082px) {
+
+    
 
         .menus ul {
-            display: flex;
+            display: none;
+            position: absolute;
+            flex-direction: column;
+            top: 0px;
+            left: 0px;
+            align-items: flex-start;
             justify-content: flex-start;
-            flex: 1;
-            gap: 40px;
-        }
+            padding-left: 15px;
+            padding-top: 90px;
+            width: 70%;
+            height: 100vh;
+            background: white;
 
-        .menus ul li {
-            color: green;
-        }
-
-        .menus ul li a {
-            text-decoration: none;
-            font-size: 16px;
-            color: black;
-            font-weight: 600;
-        }
-
-        .bar2 {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex: 1;
-            justify-content: right;
-        }
-
-        .bar2 span {
-            font-size: 25px;
-            color: green;
-        }
-
-        .call-btn {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: nowrap;
-
-        }
-
-        .call-btn p {
-            font-size: 15px;
-            text-wrap: nowrap;
-            font-weight: 600;
         }
 
         .nav-btn {
-            font-size: 18px;
-            font-weight: 600;
-            padding: 10px 30px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
-        }
-
-        .nav-btn.btn2{
             display: none;
         }
 
+        .menus ul li {
+            list-style: none;
+        }
+
+        .nav-btn.btn2 {
+            display: block;
+        }
 
         .bar3 {
+            display: flex;
+            align-items: center;
+
+            justify-content: flex-start;
+        }
+
+        .menu-btn {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            display: none;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .navbar {
+            gap: 10px;
+        }
+
+        .logo {
+            z-index: 1001;
+        }
+    }
+
+    @media (max-width:620px) {
+        .call-btn p {
             display: none;
         }
 
-        @media (max-width:1082px) {
 
-            .navbar{
-                position: relative;
-            }
-
-            .menus ul{
-              display: none;
-              position:  absolute;
-              flex-direction: column;
-              top: 0px;
-              left: 0px;
-              align-items: flex-start;
-              justify-content: flex-start;
-             padding-left: 15px;
-              padding-top: 90px;
-              width: 70%;
-              height: 100vh;
-              background: white;
-
-            }
-
-            .nav-btn{
-                display: none;
-            }
-
-            .menus ul li{
-              list-style: none;
-            }
-
-            .nav-btn.btn2{
-                display: block;
-            }
-
-            .bar3{
-                display: flex;
-                align-items: center;
-    
-                justify-content: flex-start;
-            }
-
-            .menu-btn{
-                font-size: 25px;
-                font-weight: bold;
-            }
-
-             .close-btn{
-                display: none;
-                font-size: 25px;
-                font-weight: bold;
-            }
-
-                    .navbar {
-                        gap: 10px;
-                    }
-
-                    .logo{
-                        z-index: 1001;
-                    }
+        .bar2 {
+            gap: 10px;
         }
 
-        @media (max-width:620px) {
-            .call-btn p {
-                display: none;
-            }
 
 
-            .bar2{
-                gap: 10px;
-            }
-
-
-
-            .logo img {
-                width: 150px;
-            }
+        .logo img {
+            width: 150px;
         }
-    </style>
+    }
 
-</body>
+    /*Hero section */
 
-<section class="hero-section">
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        gap: 30px;
+        padding: 20px;
+        background: linear-gradient(180deg,rgba(5, 29, 5, 0.363),rgba(1, 26, 4, 0.993)),url("./src/hero-bg1.webp");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .tag {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 0 10px rgba(255, 238, 0, 0.521);
+        padding: 5px 20px;
+        border-radius: 20px;
+    }
+
+    .tag p {
+        font-size: clamp(14px, 1.7vw, 18px);
+        color: white;
+    }
+
+    .tag span {
+        font-size: clamp(14px, 1.7vw, 18px);
+        color: yellow;
+    }
+
+    .hero-section h1 {
+        font-family: "Oldenburg", serif;
+        font-size: clamp(24px, 5vw, 60px);
+        text-align: center;
+        line-height: 1.2;
+        max-width: 1100px;
+        color: white;
+    }
+
+    .hero-section>p {
+        font-size: clamp(14px, 1.7vw, 18px) ;
+        max-width: 700px;
+        text-align: center;
+        line-height: 1.5;
+        color: white;
+    }
+
+    .hero-btns {
+        display: flex;
+        gap: 10px;
+    }
+
+    .hero-btns span {
+        font-size: 18px;
+    }
+
+    .farm {
+        display: flex;
+        align-items: center;
+        font-weight: bolder;
+        padding: 10px 20px;
+        gap: 10px;
+        border-radius: 10px;
+        font-size: 14px;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        border: none;
+        color: black;
+    }
+
+    .service {
+        display: flex;
+        align-items: center;
+        font-weight: bolder;
+        padding: 10px 20px;
+        gap: 10px;
+        border-radius: 10px;
+        font-size: 14px;
+        background: transparent;
+        border: 1px solid green;
+        color: white;
+    }
+
+    @media (max-width:400px) {
+
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .hero-btns button {
+            padding: 8px 20px;
+            justify-content: center;
+        }
+
+        .hero-section{
+            gap: 20px;
+        }
+    }
+</style>
+
+<body>
+
 
     <div class="navbar">
 
@@ -207,13 +314,13 @@
 
         <div class="menus">
 
-            <ul>
+            <ul class="menuwraper">
                 <li><a href="">Home</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Pages</a></li>
                 <li><a href="">Service</a></li>
                 <li><a href="">Contact</a></li>
-                
+
                 <a href=""><button class="nav-btn btn2">Login</button></a>
             </ul>
 
@@ -233,17 +340,68 @@
 
 
         <div class="bar3">
-
-                <span class="material-symbols-outlined menu-btn">menu</span>
-        
-
-                <span class="material-symbols-outlined close-btn">close</span>
-    
+            <span class="material-symbols-outlined menu-btn">menu</span>
+            <span class="material-symbols-outlined close-btn">close</span>
         </div>
 
     </div>
 
-</section>
+    <section class="hero-section">
 
+        <div class="tag">
+            <span class="material-symbols-outlined">wheat</span>
+            <p>Healthy Farms , Healthy Lives</p>
+        </div>
+
+        <h1>Growing Pure Organic Goodness for a healthier tomorrow</h1>
+
+        <p>Discover the true taste of nature with our farm-fresh, chemical-free,
+            and sustainably grown produce.
+            Form nutrient-rich vegetables to naturally ripened fruits.</p>
+
+        <div class="hero-btns">
+            <button class="farm">Visit Our Farm <span class="material-symbols-outlined">arrow_outward</span></button>
+            <button class="service">Visit Our Services <span
+                    class="material-symbols-outlined">arrow_outward</span></button>
+        </div>
+    </section>
+
+    <script>
+        let menubtn = document.querySelector(".menu-btn")
+        let closebtn = document.querySelector(".close-btn")
+        let menuwraper = document.querySelector(".menuwraper")
+
+        menubtn.addEventListener("click", () => {
+            menuwraper.style.display = "flex"
+            menubtn.style.display = "none"
+            closebtn.style.display = "block"
+        })
+
+        closebtn.addEventListener("click", () => {
+            menuwraper.style.display = "none"
+            menubtn.style.display = "block"
+            closebtn.style.display = "none"
+        })
+
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 1082) {
+                menuwraper.style.display = "flex"
+                menubtn.style.display = "none"
+                closebtn.style.display = "none"
+
+            }
+
+            else {
+                menuwraper.style.display = "none"
+                menubtn.style.display = "block"
+                closebtn.style.display = "none"
+
+            }
+        })
+
+    </script>
+
+</body>
 
 </html>
