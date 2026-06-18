@@ -29,13 +29,15 @@
         .navbar {
             display: flex;
             font-family: "Noto Sans", sans-serif;
-            margin: 20px;
             background: white;
-            border: 1px solid gray;
+            position: fixed;
+            margin:1% 2%;
+            width: 96%;
             padding: 10px;
             border-radius: 10px;
-            gap: 20px;
+            gap: clamp(20px,3vw,50px);
             justify-content: space-between;
+            box-shadow: 5px 5px 30px gray;
         }
 
         .logo img {
@@ -53,7 +55,7 @@
 
         .menus ul {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             flex: 1;
             gap: 40px;
         }
@@ -105,22 +107,48 @@
             background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
         }
 
+        .nav-btn.btn2{
+            display: none;
+        }
+
 
         .bar3 {
             display: none;
         }
 
-        @media (max-width:1050px) {
+        @media (max-width:1082px) {
 
-            .menus ul {
+            .navbar{
+                position: relative;
+            }
+
+            .menus ul{
+              display: none;
+              position:  absolute;
+              flex-direction: column;
+              top: 0px;
+              left: 0px;
+              align-items: flex-start;
+              justify-content: flex-start;
+             padding-left: 15px;
+              padding-top: 90px;
+              width: 70%;
+              height: 100vh;
+              background: white;
+
+            }
+
+            .nav-btn{
                 display: none;
             }
 
-            .nav-btn {
-                display: none;
+            .menus ul li{
+              list-style: none;
             }
 
-
+            .nav-btn.btn2{
+                display: block;
+            }
 
             .bar3{
                 display: flex;
@@ -144,6 +172,9 @@
                         gap: 10px;
                     }
 
+                    .logo{
+                        z-index: 1001;
+                    }
         }
 
         @media (max-width:620px) {
@@ -151,9 +182,6 @@
                 display: none;
             }
 
-            .bar2 span {
-                font-size: 20px;
-            }
 
             .bar2{
                 gap: 10px;
@@ -162,7 +190,7 @@
 
 
             .logo img {
-                width: 140px;
+                width: 150px;
             }
         }
     </style>
@@ -185,6 +213,8 @@
                 <li><a href="">Pages</a></li>
                 <li><a href="">Service</a></li>
                 <li><a href="">Contact</a></li>
+                
+                <a href=""><button class="nav-btn btn2">Login</button></a>
             </ul>
 
             <div class="bar2">
@@ -203,9 +233,6 @@
 
 
         <div class="bar3">
-            <!-- <span class="material-symbols-outlined">phone_in_talk</span>
-
-            <span class="material-symbols-outlined cart">garden_cart</span> -->
 
                 <span class="material-symbols-outlined menu-btn">menu</span>
         
