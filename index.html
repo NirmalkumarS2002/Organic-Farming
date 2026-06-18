@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Organic Farming Theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            font-family: "Noto Sans", sans-serif;
+            margin: 20px;
+            background: white;
+            border: 1px solid gray;
+            padding: 10px;
+            border-radius: 10px;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            width: clamp(140px, 180vw, 200px);
+            flex: 1;
+        }
+
+
+        .menus {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex: 2;
+        }
+
+        .menus ul {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+            gap: 40px;
+        }
+
+        .menus ul li {
+            color: green;
+        }
+
+        .menus ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            color: black;
+            font-weight: 600;
+        }
+
+        .bar2 {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            justify-content: right;
+        }
+
+        .bar2 span {
+            font-size: 25px;
+            color: green;
+        }
+
+        .call-btn {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: nowrap;
+
+        }
+
+        .call-btn p {
+            font-size: 15px;
+            text-wrap: nowrap;
+            font-weight: 600;
+        }
+
+        .nav-btn {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        }
+
+
+        .bar3 {
+            display: none;
+        }
+
+        @media (max-width:1050px) {
+
+            .menus ul {
+                display: none;
+            }
+
+            .nav-btn {
+                display: none;
+            }
+
+
+
+            .bar3{
+                display: flex;
+                align-items: center;
+    
+                justify-content: flex-start;
+            }
+
+            .menu-btn{
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+             .close-btn{
+                display: none;
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+                    .navbar {
+                        gap: 10px;
+                    }
+
+        }
+
+        @media (max-width:620px) {
+            .call-btn p {
+                display: none;
+            }
+
+            .bar2 span {
+                font-size: 20px;
+            }
+
+            .bar2{
+                gap: 10px;
+            }
+
+
+
+            .logo img {
+                width: 140px;
+            }
+        }
+    </style>
+
+</body>
+
+<section class="hero-section">
+
+    <div class="navbar">
+
+        <div class="logo">
+            <img src="./src/logo.webp" alt="Company Logo">
+        </div>
+
+        <div class="menus">
+
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Pages</a></li>
+                <li><a href="">Service</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+
+            <div class="bar2">
+                <div class="call-btn">
+                    <span class="material-symbols-outlined">phone_in_talk</span>
+                    <p>+91 12345 67890</p>
+                </div>
+
+                <span class="material-symbols-outlined cart">garden_cart</span>
+
+
+                <a href=""><button class="nav-btn">Login</button></a>
+            </div>
+
+        </div>
+
+
+        <div class="bar3">
+            <!-- <span class="material-symbols-outlined">phone_in_talk</span>
+
+            <span class="material-symbols-outlined cart">garden_cart</span> -->
+
+                <span class="material-symbols-outlined menu-btn">menu</span>
+        
+
+                <span class="material-symbols-outlined close-btn">close</span>
+    
+        </div>
+
+    </div>
+
+</section>
+
+
+</html>
