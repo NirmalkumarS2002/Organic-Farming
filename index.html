@@ -106,6 +106,7 @@
         border: none;
         border-radius: 10px;
         background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        color: black;
     }
 
     .nav-btn.btn2 {
@@ -122,7 +123,7 @@
 
     @media (max-width:1082px) {
 
-    
+
 
         .menus ul {
             display: none;
@@ -206,7 +207,7 @@
         min-height: 100vh;
         gap: 30px;
         padding: 20px;
-        background: linear-gradient(180deg,rgba(5, 29, 5, 0.363),rgba(1, 26, 4, 0.993)),url("./src/hero-bg1.webp");
+        background: linear-gradient(180deg, rgba(5, 29, 5, 0.363), rgba(1, 26, 4, 0.993)), url("./src/hero-bg1.webp");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -241,7 +242,7 @@
     }
 
     .hero-section>p {
-        font-size: clamp(14px, 1.7vw, 18px) ;
+        font-size: clamp(14px, 1.7vw, 18px);
         max-width: 700px;
         text-align: center;
         line-height: 1.5;
@@ -283,6 +284,24 @@
         color: white;
     }
 
+    .fixicon {
+        position: fixed;
+        width: clamp(35px, 4vw, 50px);
+        height: clamp(35px, 4vw, 50px);
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        border-radius: clamp(8px, 1vw, 20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: clamp(30px, 6vw, 100px);
+        bottom: clamp(30px, 6vw, 100px);
+        box-shadow: 0 0 30px rgba(255, 255, 0, 0.575);
+    }
+
+    .fixicon span {
+        font-size: clamp(24px, 3vw, 40px);
+    }
+
     @media (max-width:400px) {
 
         .hero-btns {
@@ -297,9 +316,170 @@
             justify-content: center;
         }
 
-        .hero-section{
+        .hero-section {
             gap: 20px;
         }
+    }
+
+    /* footer */
+
+    .footer {
+        font-family: "Noto Sans", sans-serif;
+        background: linear-gradient(90deg,rgba(0, 0, 0, 0.466),rgba(8, 0, 0, 0.568)),url(./src/footer.webp);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+    }
+
+    .footerpart1 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        width: 100%;
+        padding: 40px;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .footer-box img {
+        margin-bottom: 10px;
+    }
+
+    .footer-box p {
+        width: 100%;
+        text-align: justify;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .footer-box h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .subscribe {
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        border: none;
+    }
+
+    .footer-email {
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid green;
+    }
+
+
+    .sotial-icons {
+        display: flex;
+        gap: 10px;
+
+    }
+
+    .footer-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 10px;
+        width: 40px;
+        background: rgba(56, 56, 56, 0.185);
+        backdrop-filter: blur(10px);
+        border: 1px solid green;
+    }
+
+    .footer-icon i {
+        font-size: 22px;
+        color: green;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-links li {
+        color: green;
+        list-style: none;
+        padding-left: 5px;
+    }
+
+    .footer-box a {
+        text-decoration: none;
+        font-size: 16px;
+        color: white;
+    }
+
+    .contect a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footer-links span {
+        font-size: 16px;
+    }
+
+    .footer-box a:hover,
+    .footerpart2 a:hover {
+        color: green;
+    }
+
+    .footerpart2 {
+        display: flex;
+        justify-content: space-around;
+        padding: 30px;
+
+        border-top: 1px solid gray;
+    }
+
+    .footerpart2 a {
+        text-decoration: none;
+        font-size: 16px;
+        color: white;
+        flex-wrap: nowrap;
+    }
+
+
+    .footerpart2 p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .terms {
+        display: flex;
+        gap: 20px;
+    }
+
+    @media (max-width:700px) {
+        .footerpart2 {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terms {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footerpart2 a,.footerpart2 p {
+            font-size: 15px;
+            line-height: 1.5;
+
+        }
+
+         .footerpart1 {
+            padding: 20px;
+        }
+
     }
 </style>
 
@@ -353,7 +533,7 @@
             <p>Healthy Farms , Healthy Lives</p>
         </div>
 
-        <h1>Growing Pure Organic Goodness for a healthier tomorrow</h1>
+        <h1>Growing Pure Organic for<div></div>a healthier tomorrow</h1>
 
         <p>Discover the true taste of nature with our farm-fresh, chemical-free,
             and sustainably grown produce.
@@ -364,7 +544,103 @@
             <button class="service">Visit Our Services <span
                     class="material-symbols-outlined">arrow_outward</span></button>
         </div>
+
+        <div class="fixicon">
+            <span class="material-symbols-outlined">arrow_drop_up</span>
+        </div>
     </section>
+
+    <footer class="footer">
+
+        <div class="footerpart1">
+            <div class="footer-box">
+
+                <div class="logo">
+                    <img src="./src/logo.webp" alt="company logo">
+                </div>
+
+                <p>We are a dedicated organic farm commited to
+                    growing fresh, chemical-free, and naturally cultivated produce. our
+                    mission is to promote healthy living and support sustainable.
+                </p>
+
+                <div class="sotial-icons">
+
+                    <div class="footer-icon"><i class="fa-brands fa-whatsapp errorpage"></i></div>
+                    <div class="footer-icon"><i class="fa-brands fa-instagram errorpage"></i></div>
+                    <div class="footer-icon"><i class="fa-brands fa-x-twitter errorpage"></i></div>
+                    <div class="footer-icon"><i class="fa-brands fa-facebook errorpage"></i></div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="footer-box">
+
+                <div>
+                    <h2>Quick Links</h2>
+
+                    <ul class="footer-links">
+                        <li><a href="">About</a></li>
+                        <li><a href="">Pages</a></li>
+                        <li><a href="">Service</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Products</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+       
+
+            <div class="footer-box">
+
+                <div>
+                    <h2>Our Services</h2>
+
+                    <ul class="footer-links contect">
+                        <li><a href=""><span class="material-symbols-outlined">
+                                    mail
+                                </span>organic@gmai.com</a></li>
+                        <li><a href=""><span class="material-symbols-outlined">
+                                    phone_in_talk
+                                </span>+91 12345 67890</a></li>
+                        <li><a href=""><span class="material-symbols-outlined">
+                                    location_on
+                                </span>karur,Tamilnadu</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div class="footer-box">
+
+                <h2>Newsletter Signup</h2>
+
+                <p>Subscribe to receive fresh updates,seasonal offers, and health tips directly</p>
+
+                <input type="email" class="footer-email" placeholder="Enter Your Email">
+
+                <button class="subscribe">Subscribe</button>
+
+            </div>
+
+        </div>
+
+        <div class="footerpart2">
+            <p> @ 2026 Stackly. All Rights Reserved.</p>
+            <div class="terms">
+                <a href="">Privacy Policy</a>
+                <a href="">Terms & Conditions</a>
+            </div>
+        </div>
+
+    </footer>
 
     <script>
         let menubtn = document.querySelector(".menu-btn")
