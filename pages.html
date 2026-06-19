@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Organic Farming Theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Oldenburg&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .navbar {
+        display: flex;
+        font-family: "Noto Sans", sans-serif;
+        background: white;
+        position: fixed;
+        top: 5px;
+        margin: 1% 2%;
+        width: 96%;
+        padding: 10px;
+        border-radius: 10px;
+        gap: clamp(20px, 3vw, 50px);
+        justify-content: space-between;
+        box-shadow: 5px 5px 30px gray;
+        z-index: 1;
+    }
+
+    .logo img {
+        width: clamp(140px, 180vw, 200px);
+        flex: 1;
+    }
+
+
+    .menus {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 2;
+    }
+
+    .menus ul {
+        display: flex;
+        justify-content: flex-start;
+        flex: 1;
+        gap: 40px;
+    }
+
+    .menus ul li {
+        color: green;
+    }
+
+    .menus ul li a {
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        font-weight: 600;
+        display: inline-block;
+        position: relative;
+    }
+
+    .menus ul li a.activelink {
+        color: green;
+    }
+
+    .menus ul li a::after {
+        content: "";
+        position: absolute;
+        left: 0px;
+        bottom: -3px;
+        height: 3px;
+        background: linear-gradient(125deg, rgb(2, 34, 2), rgb(0, 250, 0));
+        width: 0%;
+        border-radius: 0;
+        transition: 0.5s ease;
+    }
+
+    .menus ul li a:hover {
+        color: green;
+    }
+
+
+
+    .bar2 {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex: 1;
+        justify-content: right;
+    }
+
+    .bar2 span {
+        font-size: 25px;
+        color: green;
+    }
+
+    .call-btn {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: nowrap;
+
+    }
+
+    .call-btn p {
+        font-size: 15px;
+        text-wrap: nowrap;
+        font-weight: 600;
+    }
+
+    .call-btn p:hover {
+        color: green;
+    }
+
+    .nav-btn {
+        font-size: 18px;
+        font-weight: 600;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        color: black;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 5px 15px rgba(0, 255, 0, 0.25);
+    }
+
+    .nav-btn:hover {
+        transform: translateY(-1px) scale(1.05);
+        box-shadow:
+            0 0 10px #00ff0073,
+            0 0 20px #00ff0067,
+            0 0 10px rgba(0, 255, 0, 0.589);
+    }
+
+    .nav-btn:active {
+        transform: translateY(-1px) scale(1.1);
+    }
+
+    .nav-btn.btn2 {
+        display: none;
+    }
+
+    .menuwraper a {
+        text-decoration: none;
+    }
+
+    .bar3 {
+        display: none;
+    }
+
+    @media (max-width:1082px) {
+
+
+
+        .menus ul {
+            display: none;
+            position: absolute;
+            flex-direction: column;
+            top: 0px;
+            left: 0px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding-left: 15px;
+            padding-top: 90px;
+            width: 70%;
+            height: 100vh;
+            background: white;
+
+
+        }
+
+
+        .menus ul li a:hover::after {
+            width: 100%;
+        }
+
+        .menus ul li a.activelink:after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            display: none;
+        }
+
+        .menus ul li {
+            list-style: none;
+        }
+
+        .nav-btn.btn2 {
+            display: block;
+        }
+
+        .bar3 {
+            display: flex;
+            align-items: center;
+
+            justify-content: flex-start;
+        }
+
+        .menu-btn {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            display: none;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .navbar {
+            gap: 10px;
+        }
+
+        .logo {
+            z-index: 1001;
+        }
+    }
+
+    @media (max-width:620px) {
+        .call-btn p {
+            display: none;
+        }
+
+
+        .bar2 {
+            gap: 10px;
+        }
+
+
+
+        .logo img {
+            width: 150px;
+        }
+    }
+    /* footer */
+
+    .footer {
+        font-family: "Noto Sans", sans-serif;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.767), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+    }
+
+    .footerpart1 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        width: 100%;
+        padding: 40px;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .footer-box img {
+        margin-bottom: 10px;
+    }
+
+    .footer-box p {
+        width: 100%;
+        text-align: justify;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .footer-box h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .subscribe {
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: linear-gradient(125deg,
+                rgb(17, 161, 17),
+                rgb(8, 255, 8),
+                rgb(13, 131, 13));
+        border: none;
+        cursor: pointer;
+        transition: all .4s ease;
+    }
+
+    .subscribe:hover {
+        box-shadow:
+            0 0 15px rgba(0, 255, 0, .6),
+            0 0 30px rgba(0, 255, 0, .4);
+    }
+
+    .subscribe:active {
+        transform: translateY(-1px) scale(.98);
+    }
+
+    .footer-email {
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid rgb(0, 255, 0);
+        background: transparent;
+        color: white;
+        transition: all .3s ease;
+    }
+
+    .footer-email:hover {
+        border-color: rgb(0, 255, 0);
+        box-shadow: 0 0 10px rgba(0, 255, 0, .3);
+    }
+
+    .footer-email:focus {
+        outline: none;
+        border-color: rgb(0, 255, 0);
+
+        box-shadow:
+            0 0 10px rgba(0, 255, 0, .5),
+            0 0 20px rgba(0, 255, 0, .3);
+
+        background: rgba(0, 255, 0, .05);
+    }
+
+    .footer-email::placeholder {
+        color: rgba(255, 255, 255, .6);
+    }
+
+    .footer-email:focus {
+        border: green;
+    }
+
+
+    .sotial-icons {
+        display: flex;
+        gap: 10px;
+
+    }
+
+    .footer-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 10px;
+        width: 40px;
+        background: rgba(56, 56, 56, 0.185);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgb(0, 255, 0);
+
+        transition: all .4s ease;
+    }
+
+    .footer-icon i {
+        font-size: 22px;
+        color: rgb(0, 255, 0);
+    }
+
+    .footer-icon:hover {
+        transform: translateY(-5px) scale(1.08);
+
+        background: linear-gradient(125deg,
+                rgb(17, 161, 17),
+                rgb(8, 255, 8),
+                rgb(13, 131, 13));
+
+        box-shadow:
+            0 0 15px rgba(0, 255, 0, .6),
+            0 0 30px rgba(0, 255, 0, .4);
+    }
+
+    .footer-icon i {
+        font-size: 22px;
+        color: rgb(0, 255, 0);
+        transition: all .4s ease;
+    }
+
+    .footer-icon:hover i {
+        color: black;
+
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-links li {
+        color: green;
+        list-style: none;
+        padding-left: 5px;
+    }
+
+    .footer-box a {
+        text-decoration: none;
+        font-size: 16px;
+        color: white;
+    }
+
+    .contect a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footer-links span {
+        font-size: 16px;
+    }
+
+    .footer-box a:hover,
+    .footerpart2 a:hover {
+        color: green;
+    }
+
+    .footerpart2 {
+        display: flex;
+        justify-content: space-around;
+        padding: 30px;
+
+        border-top: 1px solid gray;
+    }
+
+    .footerpart2 a {
+        text-decoration: none;
+        font-size: 16px;
+        color: white;
+        flex-wrap: nowrap;
+    }
+
+
+    .footerpart2 p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .terms {
+        display: flex;
+        gap: 20px;
+    }
+
+    @media (max-width:700px) {
+        .footerpart2 {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terms {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footerpart2 a,
+        .footerpart2 p {
+            font-size: 15px;
+            line-height: 1.5;
+
+        }
+
+        .footerpart1 {
+            padding: 20px;
+        }
+
+    }
+</style>
+
+<body>
+
+
+    <div class="navbar">
+
+        <div class="logo">
+            <a href="index.html"><img src="./src/logo.webp" alt="Company Logo"></a>
+        </div>
+
+        <div class="menus">
+
+            <ul class="menuwraper">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="about.html" >About</a></li>
+                <li><a href="pages.html" class="activelink">Pages</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="contact.html" >Contact</a></li>
+
+                <a href=""><button class="nav-btn btn2">Login</button></a>
+            </ul>
+
+            <div class="bar2">
+                <div class="call-btn">
+                    <span class="material-symbols-outlined errorpage">phone_in_talk</span>
+                    <p class="errorpage">+91 12345 67890</p>
+                </div>
+
+                <span class="material-symbols-outlined errorpage">garden_cart</span>
+
+
+                <a href="login.html"><button class="nav-btn">Login</button></a>
+            </div>
+
+        </div>
+
+
+        <div class="bar3">
+            <span class="material-symbols-outlined menu-btn">menu</span>
+            <span class="material-symbols-outlined close-btn">close</span>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+
+        <div class="footerpart1">
+            <div class="footer-box">
+
+                <div class="logo">
+                    <a href="index.html"> <img src="./src/logo.webp" alt="company logo"></a>
+                </div>
+
+                <p>We are a dedicated organic farm commited to
+                    growing fresh, chemical-free, and naturally cultivated produce. our
+                    mission is to promote healthy living and support sustainable.
+                </p>
+
+                <div class="sotial-icons">
+
+                    <div class="footer-icon"><i class="fa-brands fa-whatsapp errorpage"></i></div>
+                    <div class="footer-icon"><i class="fa-brands fa-instagram errorpage"></i></div>
+                    <div class="footer-icon"><i class="fa-brands fa-x-twitter errorpage"></i></div>
+                    <div class="footer-icon"><i class="fa-brands fa-facebook errorpage"></i></div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="footer-box">
+
+                <div>
+                    <h2>Quick Links</h2>
+
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="pages.html">Pages</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="">Products</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+            <div class="footer-box">
+
+                <div>
+                    <h2>Our Services</h2>
+
+                    <ul class="footer-links contect">
+                        <li><a href="404.html"><span class="material-symbols-outlined">
+                                    mail
+                                </span>organic@gmai.com</a></li>
+                        <li><a href="404.html"><span class="material-symbols-outlined">
+                                    phone_in_talk
+                                </span>+91 12345 67890</a></li>
+                        <li><a href="404.html"><span class="material-symbols-outlined">
+                                    location_on
+                                </span>karur, Tamilnadu</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div class="footer-box">
+
+                <h2>Newsletter Signup</h2>
+
+                <p>Subscribe to receive fresh updates,seasonal offers, and health tips directly</p>
+
+                <input type="email" class="footer-email" placeholder="Enter Your Email">
+
+                <button class="subscribe">Subscribe</button>
+
+            </div>
+
+        </div>
+
+        <div class="footerpart2">
+            <p> @ 2026 Stackly. All Rights Reserved.</p>
+            <div class="terms">
+                <a href="404.html">Privacy Policy</a>
+                <a href="404.html">Terms & Conditions</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+
+        //nav bar
+
+        let menubtn = document.querySelector(".menu-btn")
+        let closebtn = document.querySelector(".close-btn")
+        let menuwraper = document.querySelector(".menuwraper")
+
+        menubtn.addEventListener("click", () => {
+            menuwraper.style.display = "flex"
+            menubtn.style.display = "none"
+            closebtn.style.display = "block"
+        })
+
+        closebtn.addEventListener("click", () => {
+            menuwraper.style.display = "none"
+            menubtn.style.display = "block"
+            closebtn.style.display = "none"
+        })
+
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 1082) {
+                menuwraper.style.display = "flex"
+                menubtn.style.display = "none"
+                closebtn.style.display = "none"
+
+            }
+
+            else {
+                menuwraper.style.display = "none"
+                menubtn.style.display = "block"
+                closebtn.style.display = "none"
+
+            }
+        })
+
+
+
+        //error page 
+
+        let errorpage = document.querySelectorAll('.errorpage')
+
+        errorpage.forEach((item) => {
+            item.addEventListener("click", (e) => {
+                e.preventDefault()
+                window.location.href = "404.html"
+            })
+        })
+
+        //footer 
+
+        const subscribeBtn = document.querySelector(".subscribe");
+        const footerInput = document.querySelector(".footer-email");
+
+        subscribeBtn.addEventListener("click", () => {
+            const email = footerInput.value.trim();
+
+            if (email === "") {
+                alert("Please enter your email address");
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address");
+                return;
+            }
+
+            alert("Thank you for subscribing!");
+            footerInput.value = "";
+        });
+
+
+    </script>
+
+</body>
+
+</html>
