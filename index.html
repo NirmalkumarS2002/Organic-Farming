@@ -39,6 +39,7 @@
         gap: clamp(20px, 3vw, 50px);
         justify-content: space-between;
         box-shadow: 5px 5px 30px gray;
+        z-index: 1;
     }
 
     .logo img {
@@ -70,7 +71,31 @@
         font-size: 16px;
         color: black;
         font-weight: 600;
+        display: inline-block;
+        position: relative;
     }
+
+    .menus ul li a.activelink {
+        color: green;
+    }
+
+    .menus ul li a::after {
+        content: "";
+        position: absolute;
+        left: 0px;
+        bottom: -3px;
+        height: 3px;
+        background: linear-gradient(125deg, rgb(2, 34, 2), rgb(0, 250, 0));
+        width: 0%;
+        border-radius: 0;
+        transition: 0.5s ease;
+    }
+
+    .menus ul li a:hover {
+        color: green;
+    }
+
+
 
     .bar2 {
         display: flex;
@@ -99,6 +124,10 @@
         font-weight: 600;
     }
 
+        .call-btn p:hover {
+            color: green;
+    }
+
     .nav-btn {
         font-size: 18px;
         font-weight: 600;
@@ -107,6 +136,21 @@
         border-radius: 10px;
         background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
         color: black;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 5px 15px rgba(0, 255, 0, 0.25);
+    }
+
+    .nav-btn:hover {
+       transform: translateY(-1px) scale(1.05);
+           box-shadow:
+        0 0 10px #00ff0073,
+        0 0 20px #00ff0067,
+        0 0 10px rgba(0, 255, 0, 0.589);
+    }
+
+    .nav-btn:active {
+        transform: translateY(-1px) scale(1.1);
     }
 
     .nav-btn.btn2 {
@@ -139,6 +183,15 @@
             height: 100vh;
             background: white;
 
+        }
+
+
+        .menus ul li a:hover::after {
+            width: 100%;
+        }
+
+        .menus ul li a.activelink:after {
+            width: 100%;
         }
 
         .nav-btn {
@@ -207,10 +260,11 @@
         min-height: 100vh;
         gap: 30px;
         padding: 20px;
-        background: linear-gradient(180deg, rgba(5, 29, 5, 0.363), rgba(1, 26, 4, 0.993)), url("./src/hero-bg1.webp");
+        background: linear-gradient(180deg, rgba(1, 37, 1, 0.363), rgba(0, 0, 0, 0.993)), url("./src/hero-bg1.webp");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+        transition: 0.5s ease;
     }
 
     .tag {
@@ -293,13 +347,51 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        right: clamp(30px, 6vw, 100px);
-        bottom: clamp(30px, 6vw, 100px);
-        box-shadow: 0 0 30px rgba(255, 255, 0, 0.575);
+        right: clamp(30px, 6vw, 69px);
+        bottom: clamp(30px, 6vw, 69px);
+        box-shadow: 0 0 20px rgba(245, 222, 179, 0.582);
     }
 
     .fixicon span {
         font-size: clamp(24px, 3vw, 40px);
+    }
+
+    .side-btns button {
+        height: clamp(30px, 4vw, 50px);
+        width: clamp(30px, 4vw, 50px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(124, 124, 124, 0.185);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgb(0, 255, 13);
+    }
+
+
+
+    .side-btns button .material-symbols-outlined {
+        font-size: clamp(20px, 3vw, 40px);
+        color: rgb(0, 255, 0);
+    }
+
+    .side1 {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 5%;
+    }
+
+    .side2 {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5%;
+
     }
 
     @media (max-width:400px) {
@@ -325,7 +417,7 @@
 
     .footer {
         font-family: "Noto Sans", sans-serif;
-        background: linear-gradient(90deg,rgba(0, 0, 0, 0.466),rgba(8, 0, 0, 0.568)),url(./src/footer.webp);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.767), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -470,13 +562,14 @@
             justify-content: space-around;
         }
 
-        .footerpart2 a,.footerpart2 p {
+        .footerpart2 a,
+        .footerpart2 p {
             font-size: 15px;
             line-height: 1.5;
 
         }
 
-         .footerpart1 {
+        .footerpart1 {
             padding: 20px;
         }
 
@@ -489,13 +582,13 @@
     <div class="navbar">
 
         <div class="logo">
-            <img src="./src/logo.webp" alt="Company Logo">
+            <a href="index.html"><img src="./src/logo.webp" alt="Company Logo"></a>
         </div>
 
         <div class="menus">
 
             <ul class="menuwraper">
-                <li><a href="">Home</a></li>
+                <li><a href="" class="activelink">Home</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Pages</a></li>
                 <li><a href="">Service</a></li>
@@ -506,14 +599,14 @@
 
             <div class="bar2">
                 <div class="call-btn">
-                    <span class="material-symbols-outlined">phone_in_talk</span>
+                    <span class="material-symbols-outlined errorpage">phone_in_talk</span>
                     <p>+91 12345 67890</p>
                 </div>
 
-                <span class="material-symbols-outlined cart">garden_cart</span>
+                <span class="material-symbols-outlined errorpage">garden_cart</span>
 
 
-                <a href=""><button class="nav-btn">Login</button></a>
+                <a href="login.html"><button class="nav-btn">Login</button></a>
             </div>
 
         </div>
@@ -540,13 +633,23 @@
             Form nutrient-rich vegetables to naturally ripened fruits.</p>
 
         <div class="hero-btns">
-            <button class="farm">Visit Our Farm <span class="material-symbols-outlined">arrow_outward</span></button>
-            <button class="service">Visit Our Services <span
+            <button class="farm errorpage">Visit Our Farm <span class="material-symbols-outlined">arrow_outward</span></button>
+            <button class="service errorpage">Visit Our Services <span
                     class="material-symbols-outlined">arrow_outward</span></button>
         </div>
 
         <div class="fixicon">
             <span class="material-symbols-outlined">arrow_drop_up</span>
+        </div>
+
+        <div class="side-btns">
+            <button class="side1">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+
+            <button class="side2">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
         </div>
     </section>
 
@@ -556,7 +659,7 @@
             <div class="footer-box">
 
                 <div class="logo">
-                    <img src="./src/logo.webp" alt="company logo">
+                   <a href="index.html"> <img src="./src/logo.webp" alt="company logo"></a>
                 </div>
 
                 <p>We are a dedicated organic farm commited to
@@ -585,17 +688,17 @@
                     <h2>Quick Links</h2>
 
                     <ul class="footer-links">
-                        <li><a href="">About</a></li>
-                        <li><a href="">Pages</a></li>
-                        <li><a href="">Service</a></li>
-                        <li><a href="">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="pages.html">Pages</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                         <li><a href="">Products</a></li>
                     </ul>
                 </div>
 
             </div>
 
-       
+
 
             <div class="footer-box">
 
@@ -603,7 +706,7 @@
                     <h2>Our Services</h2>
 
                     <ul class="footer-links contect">
-                        <li><a href=""><span class="material-symbols-outlined">
+                        <li><a href="404.html"><span class="material-symbols-outlined">
                                     mail
                                 </span>organic@gmai.com</a></li>
                         <li><a href=""><span class="material-symbols-outlined">
@@ -675,6 +778,43 @@
 
             }
         })
+
+
+        //hero page
+
+        let side1 = document.querySelector('.side1')
+        let side2 = document.querySelector('.side2')
+        let herosecion = document.querySelector(".hero-section")
+        let image = ["./src/hero-bg1.webp", "./src/hero-bg2.webp", "./src/hero-bg3.webp"]
+        let index = 0
+
+        side1.addEventListener("click", () => {
+            index++
+            if (image.length - 1 < index) {
+                index = 0;
+            }
+
+            herosecion.style.backgroundImage = `linear-gradient(180deg, rgba(1, 37, 1, 0.363), rgba(0, 0, 0, 0.993)),url(${image[index]})`
+        })
+
+
+        side2.addEventListener("click", () => {
+            index--
+            if (index < 0) {
+                index = image.length - 1
+            }
+            herosecion.style.backgroundImage = `linear-gradient(180deg, rgba(1, 37, 1, 0.363), rgba(0, 0, 0, 0.993)),url(${image[index]})`
+        })
+
+        setInterval(() => {
+            index++
+            if (image.length - 1 < index) {
+                index = 0;
+            }
+
+            herosecion.style.backgroundImage = `linear-gradient(180deg, rgba(1, 37, 1, 0.363), rgba(0, 0, 0, 0.993)),url(${image[index]})`
+        }, 2000)
+
 
     </script>
 
