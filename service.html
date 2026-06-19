@@ -39,7 +39,7 @@
         gap: clamp(20px, 3vw, 50px);
         justify-content: space-between;
         box-shadow: 5px 5px 30px gray;
-        z-index: 1;
+        z-index: 1000;
     }
 
     .logo img {
@@ -289,7 +289,7 @@
 
     .subscribe {
         width: 100%;
-        padding: 10px 20px;
+        padding: 14px 20px;
         border-radius: 5px;
         background: linear-gradient(125deg,
                 rgb(17, 161, 17),
@@ -312,7 +312,7 @@
 
     .footer-email {
         width: 100%;
-        padding: 10px 20px;
+        padding: 14px 20px;
         border-radius: 5px;
         margin-bottom: 10px;
         border: 1px solid rgb(0, 255, 0);
@@ -479,6 +479,558 @@
         }
 
     }
+
+    
+        /* ── Shared ── */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,200,0,0.1);
+            border: 1px solid green;
+            border-radius: 20px;
+            padding: 5px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: green;
+            margin-bottom: 18px;
+        }
+        .eyebrow span { font-size: 18px; }
+        .eyebrow-light {
+            background: rgba(0,255,0,0.09);
+            border-color: rgb(0,255,0);
+            color: rgb(0,255,0);
+        }
+        .sec-title {
+            font-family: "Oldenburg", serif;
+            font-size: clamp(26px, 3.6vw, 44px);
+            color: #0a2200;
+            line-height: 1.25;
+        }
+        .sec-title-light { color: #fff; }
+        .sec-sub {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+        .sec-sub-light { color: rgba(255,255,255,0.62); }
+        .divider {
+            width: 56px; height: 4px;
+            background: linear-gradient(90deg, green, rgb(0,255,0));
+            border-radius: 2px;
+            margin: 14px 0 0;
+        }
+        .divider-center { margin: 14px auto 0; }
+        .green-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: "Noto Sans", sans-serif;
+            background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8), rgb(13,131,13));
+            color: #000;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,255,0,0.25);
+            text-decoration: none;
+        }
+        .green-btn:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 0 28px rgba(0,255,0,0.55);
+        }
+        .ghost-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: "Noto Sans", sans-serif;
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgb(0,255,0);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .ghost-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8), rgb(13,131,13));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: 0.4s ease;
+            z-index: 0;
+        }
+        .ghost-btn:hover { color: #000; transform: translateY(-2px); }
+        .ghost-btn:hover::before { transform: scaleX(1); }
+        .ghost-btn > * { position: relative; z-index: 1; }
+ 
+        /* ══════════════════════════════════════
+           SECTION 1 — Service Hero
+        ══════════════════════════════════════ */
+        .srv-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            padding: 130px 8% 90px;
+            background:
+                linear-gradient(135deg, rgba(0,18,0,0.82) 45%, rgba(0,40,0,0.6)),
+                url('https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=1400&q=80') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+        .srv-hero::after {
+            content: "";
+            position: absolute;
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,255,0,0.12);
+            pointer-events: none;
+        }
+        .srv-hero::before {
+            content: "";
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,255,0,0.18);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .srv-hero-content { max-width: 680px; position: relative; z-index: 1; }
+        .srv-hero-content h1 {
+            font-family: "Oldenburg", serif;
+            font-size: clamp(28px, 5vw, 60px);
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 22px;
+        }
+        .srv-hero-content h1 em { color: rgb(0,255,0); font-style: normal; }
+        .srv-hero-content p {
+            font-size: clamp(15px, 1.8vw, 18px);
+            color: rgba(255,255,255,0.75);
+            line-height: 1.75;
+            margin-bottom: 36px;
+
+        }
+        .srv-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    
+        /* breadcrumb */
+        .srv-breadcrumb {
+            position: absolute;
+                      bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; color: rgba(255,255,255,0.5);
+        }
+        .srv-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+        .srv-breadcrumb a:hover { color: rgb(0,255,0); }
+        .srv-breadcrumb strong { color: rgb(0,255,0); }
+        .srv-breadcrumb span.sep { color: green; }
+ 
+        /* ══════════════════════════════════════
+           SECTION 2 — Core Services Grid
+        ══════════════════════════════════════ */
+        .core-services {
+            padding: 100px 8%;
+            background: #fff;
+        }
+        .core-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        .core-header-left { max-width: 520px; }
+        .core-header-left .sec-title { margin: 14px 0 16px; }
+        .core-services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 24px;
+        }
+        .svc-card {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,180,0,0.14);
+        }
+        .svc-card:hover { transform: translateY(-6px); box-shadow: 0 16px 44px rgba(0,180,0,0.2); border-color: green; }
+        .svc-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .svc-card:hover .svc-card-img { transform: scale(1.06); }
+        .svc-card-body {
+            padding: 24px 22px 26px;
+            background: #fff;
+        }
+        .svc-num {
+            font-size: 12px;
+            font-weight: 700;
+            color: green;
+            background: rgba(0,200,0,0.1);
+            border-radius: 20px;
+            padding: 3px 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .svc-card-body h3 { font-size: 19px; font-weight: 700; color: #0a2200; margin-bottom: 10px; }
+        .svc-card-body p  { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 16px; }
+        .svc-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: green;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+        .svc-link:hover { gap: 10px; }
+        .svc-link span { font-size: 18px; }
+        /* Wide card */
+        .svc-card.wide { grid-column: span 2; }
+        .svc-card.wide .svc-card-img { height: 260px; }
+ 
+        /* ══════════════════════════════════════
+           SECTION 3 — Service Detail (Alternating)
+        ══════════════════════════════════════ */
+        .detail-section {
+            padding: 100px 8%;
+            background: linear-gradient(170deg, #021002, #002800, #011601);
+        }
+        .detail-section .sec-title-light { margin: 16px 0 14px; }
+        .detail-section .sec-sub-light { margin-bottom: 60px; max-width: 560px; }
+        .detail-rows { display: flex; flex-direction: column; gap: 80px; }
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 64px;
+            flex-wrap: wrap;
+        }
+        .detail-row.reverse { flex-direction: row-reverse; }
+        .detail-img-wrap { flex: 1; min-width: 280px; position: relative; }
+        .detail-img-wrap img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 1px solid rgba(0,255,0,0.18);
+            display: block;
+        }
+        .detail-badge {
+            position: absolute;
+            bottom: -18px;
+            right: -18px;
+            background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8), rgb(13,131,13));
+            border-radius: 14px;
+            padding: 16px 22px;
+            text-align: center;
+            box-shadow: 0 8px 28px rgba(0,255,0,0.35);
+        }
+        .detail-badge h4 { font-size: 26px; font-weight: 800; color: #000; }
+        .detail-badge p  { font-size: 12px; font-weight: 600; color: #000; }
+        .detail-badge.left-badge { right: auto; left: -18px; }
+        .detail-text { flex: 1; min-width: 280px; }
+        .detail-text h3 {
+            font-family: "Oldenburg", serif;
+            font-size: clamp(22px, 2.8vw, 34px);
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+        .detail-text p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.75;
+            margin-bottom: 14px;
+        }
+        .detail-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 22px 0 28px;
+        }
+        .detail-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.75);
+        }
+        .feat-dot {
+            width: 22px; height: 22px; min-width: 22px;
+            background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 1px;
+        }
+        .feat-dot span { font-size: 13px; color: #000; }
+ 
+        /* ══════════════════════════════════════
+           SECTION 4 — Pricing Plans
+        ══════════════════════════════════════ */
+        .pricing-section {
+            padding: 100px 8%;
+            background: #f4fbf4;
+        }
+        .pricing-header { text-align: center; margin-bottom: 60px; }
+        .pricing-header .sec-title { margin: 14px 0 12px; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+            align-items: start;
+        }
+        .plan-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 38px 30px;
+            border: 1px solid rgba(0,180,0,0.16);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .plan-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 44px rgba(0,180,0,0.18);
+            border-color: green;
+        }
+        .plan-card.featured {
+            border: 2px solid green;
+            background: linear-gradient(160deg, #f0fdf0, #fff);
+        }
+        .popular-tag {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8), rgb(13,131,13));
+            color: #000;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 20px;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(0,255,0,0.3);
+        }
+        .plan-icon {
+            width: 54px; height: 54px;
+            border-radius: 14px;
+            background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8), rgb(13,131,13));
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 18px;
+        }
+        .plan-icon span { font-size: 26px; color: #000; }
+        .plan-name { font-size: 13px; font-weight: 700; color: green; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .plan-price {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin: 10px 0 6px;
+        }
+        .plan-price sup { font-size: 20px; font-weight: 700; color: #0a2200; margin-top: 8px; }
+        .plan-price strong { font-size: 44px; font-weight: 800; color: #0a2200; line-height: 1; }
+        .plan-price span { font-size: 14px; color: #888; }
+        .plan-desc { font-size: 14px; color: #777; line-height: 1.6; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(0,180,0,0.14); }
+        .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+        .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #333; }
+        .plan-features li .material-symbols-outlined { font-size: 18px; color: green; }
+        .plan-features li.off { color: #aaa; }
+        .plan-features li.off .material-symbols-outlined { color: #ccc; }
+        .plan-btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: "Noto Sans", sans-serif;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid green;
+            background: transparent;
+            color: green;
+        }
+        .plan-btn:hover { background: rgba(0,200,0,0.08); }
+        .plan-btn.featured-btn {
+            background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8), rgb(13,131,13));
+            color: #000;
+            border: none;
+            box-shadow: 0 5px 18px rgba(0,255,0,0.28);
+        }
+        .plan-btn.featured-btn:hover { transform: translateY(-2px); box-shadow: 0 0 28px rgba(0,255,0,0.5); }
+ 
+        /* ══════════════════════════════════════
+           SECTION 5 — FAQ + CTA
+        ══════════════════════════════════════ */
+        .faq-cta-section {
+            padding: 100px 8%;
+            background: #fff;
+            display: flex;
+            gap: 70px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        /* FAQ side */
+        .faq-col { flex: 1.1; min-width: 280px; }
+        .faq-col .sec-title { margin: 14px 0 10px; }
+        .faq-col > p { font-size: 15px; color: #666; line-height: 1.7; margin-bottom: 34px; }
+        .faq-list { display: flex; flex-direction: column; gap: 0; }
+        .faq-item {
+            border-bottom: 1px solid rgba(0,180,0,0.18);
+        }
+        .faq-item:first-child { border-top: 1px solid rgba(0,180,0,0.18); }
+        .faq-q {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 4px;
+            cursor: pointer;
+            gap: 14px;
+        }
+        .faq-q h4 { font-size: 15px; font-weight: 600; color: #0a2200; line-height: 1.5; }
+        .faq-toggle {
+            width: 32px; height: 32px; min-width: 32px;
+            border-radius: 50%;
+            background: rgba(0,200,0,0.1);
+            border: 1px solid rgba(0,180,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .faq-toggle span { font-size: 20px; color: green; transition: transform 0.3s ease; }
+        .faq-item.open .faq-toggle { background: linear-gradient(125deg, rgb(17,161,17), rgb(8,255,8)); border-color: green; }
+        .faq-item.open .faq-toggle span { transform: rotate(45deg); color: #000; }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .faq-a p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            padding: 0 4px 18px;
+        }
+        .faq-item.open .faq-a { max-height: 200px; }
+ 
+        /* CTA side */
+        .cta-col {
+            flex: 1;
+            min-width: 280px;
+            background: linear-gradient(155deg, #021a02, #003300);
+            border-radius: 22px;
+            padding: 48px 38px;
+            border: 1px solid rgba(0,255,0,0.18);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-col::before {
+            content: "";
+            position: absolute;
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,255,0,0.1);
+            bottom: -80px; right: -60px;
+            pointer-events: none;
+        }
+        .cta-col img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(0,255,0,0.2);
+        }
+        .cta-col .eyebrow { margin-bottom: 14px; }
+        .cta-col h3 {
+            font-family: "Oldenburg", serif;
+            font-size: clamp(22px, 2.5vw, 30px);
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+        .cta-col > p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.62);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+        .cta-input-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .cta-inp {
+            padding: 13px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(0,255,0,0.3);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 14px;
+            font-family: "Noto Sans", sans-serif;
+            transition: 0.3s ease;
+        }
+        .cta-inp::placeholder { color: rgba(255,255,255,0.4); }
+        .cta-inp:focus {
+            outline: none;
+            border-color: rgb(0,255,0);
+            box-shadow: 0 0 12px rgba(0,255,0,0.25);
+            background: rgba(0,255,0,0.05);
+        }
+        .cta-col .green-btn { width: 100%; justify-content: center; }
+        .cta-note {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            margin-top: 12px;
+        }
+ 
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+            .core-services-grid { grid-template-columns: 1fr 1fr; }
+            .svc-card.wide { grid-column: span 2; }
+            .detail-row, .detail-row.reverse { flex-direction: column; gap: 50px; }
+            .detail-badge { right: 10px; bottom: -14px; }
+            .detail-badge.left-badge { left: 10px; }
+        }
+        @media (max-width: 660px) {
+            .srv-hero { padding: 130px 6% 80px; }
+            .core-header { flex-direction: column; align-items: flex-start; }
+            .core-services-grid { grid-template-columns: 1fr; }
+            .svc-card.wide { grid-column: span 1; }
+            .faq-cta-section { flex-direction: column; gap: 50px; }
+            .srv-hero-btns { flex-direction: column; }
+        }
 </style>
 
 <body>
@@ -523,6 +1075,358 @@
         </div>
 
     </div>
+
+    
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — Service Hero
+════════════════════════════════════════════ -->
+<section class="srv-hero">
+    <div class="srv-hero-content">
+
+      
+        <div class="eyebrow eyebrow-light">
+            <span class="material-symbols-outlined">handyman</span>
+            What We Offer
+        </div>
+        <h1>Services That Bring <em>Nature's Best</em> to You</h1>
+        <p>From doorstep delivery to hands-on farm workshops — every service we offer is designed to make organic living easy, honest, and accessible for everyone.</p>
+
+
+    </div>
+    <div class="srv-breadcrumb">
+        <a href="#">Home</a>
+        <span class="sep">›</span>
+        <strong>Services</strong>
+    </div>
+</section>
+ 
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — Core Services Grid
+════════════════════════════════════════════ -->
+<section class="core-services">
+    <div class="core-header">
+        <div class="core-header-left">
+            <div class="eyebrow">
+                <span class="material-symbols-outlined">grid_view</span>
+                Our Services
+            </div>
+            <h2 class="sec-title">Everything You Need for an Organic Life</h2>
+            <div class="divider"></div>
+        </div>
+        <p class="sec-sub">Each service is built around one goal — getting the purest, freshest organic produce and knowledge directly to you.</p>
+    </div>
+ 
+    <div class="core-services-grid">
+        <div class="svc-card wide">
+            <img class="svc-card-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80" alt="Home Delivery">
+            <div class="svc-card-body">
+                <span class="svc-num">01 — Delivery</span>
+                <h3>Same-Day Home Delivery</h3>
+                <p>Order before 9 AM and receive farm-fresh, handpicked produce at your door by noon. Packed in biodegradable boxes, guaranteed fresh.</p>
+                <a href="#" class="svc-link">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </div>
+ 
+        <div class="svc-card">
+            <img class="svc-card-img" src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=500&q=80" alt="Farm Tour">
+            <div class="svc-card-body">
+                <span class="svc-num">02 — Experience</span>
+                <h3>Guided Farm Tours</h3>
+                <p>Walk through our 200-acre certified farm, meet our farmers, and see how food is truly grown without chemicals.</p>
+                <a href="#" class="svc-link">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </div>
+ 
+        <div class="svc-card">
+            <img class="svc-card-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80" alt="Workshop">
+            <div class="svc-card-body">
+                <span class="svc-num">03 — Education</span>
+                <h3>Organic Farming Workshops</h3>
+                <p>Weekend sessions on composting, natural pest control, and terrace gardening — beginner to advanced levels.</p>
+                <a href="#" class="svc-link">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </div>
+ 
+        <div class="svc-card">
+            <img class="svc-card-img" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&q=80" alt="Subscription">
+            <div class="svc-card-body">
+                <span class="svc-num">04 — Subscription</span>
+                <h3>Weekly Veggie Basket</h3>
+                <p>A curated seasonal basket delivered every week. Pause or cancel anytime — no contracts, no lock-ins.</p>
+                <a href="#" class="svc-link">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </div>
+ 
+        <div class="svc-card">
+            <img class="svc-card-img" src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=500&q=80" alt="Bulk">
+            <div class="svc-card-body">
+                <span class="svc-num">05 — Wholesale</span>
+                <h3>Bulk & Restaurant Orders</h3>
+                <p>Wholesale organic supply for hotels, canteens, and catering businesses at competitive rates with priority dispatch.</p>
+                <a href="#" class="svc-link">Learn More <span class="material-symbols-outlined">arrow_forward</span></a>
+            </div>
+        </div>
+ 
+
+    </div>
+</section>
+ 
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — Service Detail (Alternating)
+════════════════════════════════════════════ -->
+<section class="detail-section">
+    <div class="eyebrow eyebrow-light">
+        <span class="material-symbols-outlined">info</span>
+        Service Details
+    </div>
+    <h2 class="sec-title sec-title-light">A Closer Look at How We Serve You</h2>
+    <p class="sec-sub sec-sub-light">Each service is crafted with care, backed by years of organic expertise and a passion for clean living.</p>
+ 
+    <div class="detail-rows">
+ 
+        <!-- Row 1 -->
+        <div class="detail-row">
+            <div class="detail-img-wrap">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=80" alt="Delivery service">
+                <div class="detail-badge">
+                    <h4>9 AM</h4>
+                    <p>Order Cutoff</p>
+                </div>
+            </div>
+            <div class="detail-text">
+                <div class="eyebrow eyebrow-light" style="font-size:12px;padding:4px 14px">
+                    <span class="material-symbols-outlined" style="font-size:15px">local_shipping</span> Delivery
+                </div>
+                <h3>Fresh at Your Door Before the Day Begins</h3>
+                <p>Our delivery network covers the entire Karur district and select areas of Trichy and Coimbatore. Every order is packed on the morning of delivery — never a day before.</p>
+                <ul class="detail-features">
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Harvested at dawn, delivered by noon</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Eco-friendly, chemical-free packaging</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Real-time order tracking via WhatsApp</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Free delivery on orders above ₹499</li>
+                </ul>
+                <a href="#" class="green-btn">Book Delivery <span class="material-symbols-outlined">arrow_outward</span></a>
+            </div>
+        </div>
+ 
+        <!-- Row 2 -->
+        <div class="detail-row reverse">
+            <div class="detail-img-wrap">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=700&q=80" alt="Farm tour">
+                <div class="detail-badge left-badge">
+                    <h4>₹299</h4>
+                    <p>Per Person</p>
+                </div>
+            </div>
+            <div class="detail-text">
+                <div class="eyebrow eyebrow-light" style="font-size:12px;padding:4px 14px">
+                    <span class="material-symbols-outlined" style="font-size:15px">agriculture</span> Farm Tour
+                </div>
+                <h3>Walk the Fields, Feel the Difference</h3>
+                <p>Our guided farm tours are open every Saturday and Sunday, 6 AM to 10 AM. Groups of up to 20 people are welcome. Children under 10 visit free.</p>
+                <ul class="detail-features">
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Guided by our senior agronomist</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> See composting pits and seed storage live</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Pick and take home 500g of fresh produce</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Organic breakfast included</li>
+                </ul>
+                <a href="#" class="green-btn">Book a Tour <span class="material-symbols-outlined">arrow_outward</span></a>
+            </div>
+        </div>
+ 
+        <!-- Row 3 -->
+        <div class="detail-row">
+            <div class="detail-img-wrap">
+                <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=700&q=80" alt="Weekly subscription">
+                <div class="detail-badge">
+                    <h4>₹999</h4>
+                    <p>Per Month</p>
+                </div>
+            </div>
+            <div class="detail-text">
+                <div class="eyebrow eyebrow-light" style="font-size:12px;padding:4px 14px">
+                    <span class="material-symbols-outlined" style="font-size:15px">subscriptions</span> Subscription
+                </div>
+                <h3>Your Weekly Basket of Pure Goodness</h3>
+                <p>Never run out of fresh organic produce. Our weekly subscription delivers a handpicked seasonal basket every Thursday morning — curated by our farm nutritionist.</p>
+                <ul class="detail-features">
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> 4–5 kg of mixed vegetables and fruits</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Seasonal variety — never the same box twice</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Pause or cancel anytime, no penalty</li>
+                    <li><div class="feat-dot"><span class="material-symbols-outlined" style="font-size:13px">check</span></div> Recipe cards included every week</li>
+                </ul>
+                <a href="#" class="green-btn">Subscribe Now <span class="material-symbols-outlined">arrow_outward</span></a>
+            </div>
+        </div>
+ 
+    </div>
+</section>
+ 
+<!-- ═══════════════════════════════════════════
+     SECTION 4 — Pricing Plans
+════════════════════════════════════════════ -->
+<section class="pricing-section">
+    <div class="pricing-header">
+        <div class="eyebrow">
+            <span class="material-symbols-outlined">payments</span>
+            Pricing
+        </div>
+        <h2 class="sec-title">Simple Plans, No Hidden Fees</h2>
+        <div class="divider divider-center"></div>
+        <p class="sec-sub" style="margin: 16px auto 0; text-align:center">Choose what works best for you — every plan includes certified organic produce and free delivery above ₹499.</p>
+    </div>
+ 
+    <div class="pricing-grid">
+ 
+        <div class="plan-card">
+            <div class="plan-icon"><span class="material-symbols-outlined">eco</span></div>
+            <p class="plan-name">Starter</p>
+            <div class="plan-price">
+                <sup>₹</sup><strong>299</strong><span>/ order</span>
+            </div>
+            <p class="plan-desc">Perfect for individuals trying organic for the first time. Pay per order, no commitment needed.</p>
+            <ul class="plan-features">
+                <li><span class="material-symbols-outlined">check_circle</span> 1–2 kg mixed vegetables</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Same-day delivery</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Eco packaging</li>
+                <li class="off"><span class="material-symbols-outlined">cancel</span> Recipe cards</li>
+                <li class="off"><span class="material-symbols-outlined">cancel</span> Priority dispatch</li>
+                <li class="off"><span class="material-symbols-outlined">cancel</span> Nutritionist consultation</li>
+            </ul>
+            <button class="plan-btn">Get Started</button>
+        </div>
+ 
+        <div class="plan-card featured">
+            <div class="popular-tag">⭐ Most Popular</div>
+            <div class="plan-icon"><span class="material-symbols-outlined">local_florist</span></div>
+            <p class="plan-name">Family Weekly</p>
+            <div class="plan-price">
+                <sup>₹</sup><strong>999</strong><span>/ month</span>
+            </div>
+            <p class="plan-desc">A curated weekly basket for families of 3–5. Our most loved plan — fresh, seasonal, and always surprising.</p>
+            <ul class="plan-features">
+                <li><span class="material-symbols-outlined">check_circle</span> 4–5 kg basket weekly</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Free delivery, always</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Weekly recipe cards</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Priority dispatch</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Pause / cancel anytime</li>
+                <li class="off"><span class="material-symbols-outlined">cancel</span> Nutritionist consultation</li>
+            </ul>
+            <button class="plan-btn featured-btn">Subscribe Now</button>
+        </div>
+ 
+        <div class="plan-card">
+            <div class="plan-icon"><span class="material-symbols-outlined">storefront</span></div>
+            <p class="plan-name">Business Bulk</p>
+            <div class="plan-price">
+                <sup>₹</sup><strong>3499</strong><span>/ month</span>
+            </div>
+            <p class="plan-desc">For restaurants, canteens, and catering businesses. Wholesale rates with daily priority dispatch guaranteed.</p>
+            <ul class="plan-features">
+                <li><span class="material-symbols-outlined">check_circle</span> 20–50 kg per delivery</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Daily dispatch option</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Invoice & GST billing</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Dedicated account manager</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Nutritionist consultation</li>
+                <li><span class="material-symbols-outlined">check_circle</span> Custom crop requests</li>
+            </ul>
+            <button class="plan-btn">Contact Us</button>
+        </div>
+ 
+    </div>
+</section>
+ 
+<!-- ═══════════════════════════════════════════
+     SECTION 5 — FAQ + CTA
+════════════════════════════════════════════ -->
+<section class="faq-cta-section">
+ 
+    <!-- FAQ -->
+    <div class="faq-col">
+        <div class="eyebrow">
+            <span class="material-symbols-outlined">help</span>
+            FAQ
+        </div>
+        <h2 class="sec-title">Questions We Hear Often</h2>
+        <div class="divider" style="margin-bottom:10px"></div>
+        <p>Can't find your answer? Reach out to us on WhatsApp — we reply within the hour.</p>
+ 
+        <div class="faq-list">
+ 
+            <div class="faq-item open">
+                <div class="faq-q">
+                    <h4>How do I know the produce is truly organic?</h4>
+                    <div class="faq-toggle"><span class="material-symbols-outlined">add</span></div>
+                </div>
+                <div class="faq-a">
+                    <p>Every product carries a QR code that traces its origin to a specific field and farmer. Our farm holds NPOP, USDA Organic, and EU Organic certifications — all verified by independent third-party auditors annually.</p>
+                </div>
+            </div>
+ 
+            <div class="faq-item">
+                <div class="faq-q">
+                    <h4>What areas do you deliver to?</h4>
+                    <div class="faq-toggle"><span class="material-symbols-outlined">add</span></div>
+                </div>
+                <div class="faq-a">
+                    <p>We currently deliver across Karur, Trichy, and select areas of Coimbatore. Same-day delivery is available within Karur for orders placed before 9 AM. We are expanding to Chennai by late 2025.</p>
+                </div>
+            </div>
+ 
+            <div class="faq-item">
+                <div class="faq-q">
+                    <h4>Can I cancel or pause my subscription?</h4>
+                    <div class="faq-toggle"><span class="material-symbols-outlined">add</span></div>
+                </div>
+                <div class="faq-a">
+                    <p>Yes, absolutely. You can pause or cancel your weekly subscription at any time with no penalty. Just message us on WhatsApp before Wednesday midnight and your next basket will be skipped or your plan cancelled.</p>
+                </div>
+            </div>
+ 
+            <div class="faq-item">
+                <div class="faq-q">
+                    <h4>Do you offer farm tours for school groups?</h4>
+                    <div class="faq-toggle"><span class="material-symbols-outlined">add</span></div>
+                </div>
+                <div class="faq-a">
+                    <p>Yes! We offer special group rates for schools and colleges. Children under 10 visit for free. We conduct interactive sessions on seed sowing, composting, and harvest. Book at least 7 days in advance for group visits.</p>
+                </div>
+            </div>
+ 
+            <div class="faq-item">
+                <div class="faq-q">
+                    <h4>What if my delivery arrives damaged or late?</h4>
+                    <div class="faq-toggle"><span class="material-symbols-outlined">add</span></div>
+                </div>
+                <div class="faq-a">
+                    <p>We have a no-questions-asked freshness guarantee. If your produce arrives damaged, wilted, or more than 2 hours late, we will replace it at no charge or issue a full refund — whichever you prefer. Just send us a photo on WhatsApp.</p>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+ 
+    <!-- CTA card -->
+    <div class="cta-col">
+        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&q=80" alt="Farmer in the field">
+        <div class="eyebrow eyebrow-light">
+            <span class="material-symbols-outlined">connect_without_contact</span>
+            Get Started
+        </div>
+        <h3>Ready to Make the Switch to Organic?</h3>
+        <p>Leave your details and our team will call you back within 2 hours to help you pick the right plan.</p>
+        <div class="cta-input-wrap">
+            <input class="cta-inp" type="text"  placeholder="Your Full Name">
+            <input class="cta-inp" type="tel"   placeholder="Phone Number">
+            <input class="cta-inp" type="email" placeholder="Email Address">
+        </div>
+        <a href="#" class="green-btn">
+            Request a Callback <span class="material-symbols-outlined">arrow_outward</span>
+        </a>
+        <p class="cta-note">We respect your privacy. No spam, ever.</p>
+    </div>
+ 
+</section>
 
     <footer class="footer">
 
@@ -689,6 +1593,16 @@
             alert("Thank you for subscribing!");
             footerInput.value = "";
         });
+
+            // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
 
 
     </script>

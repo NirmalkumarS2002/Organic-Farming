@@ -250,6 +250,7 @@
             width: 150px;
         }
     }
+
     /* footer */
 
     .footer {
@@ -289,7 +290,7 @@
 
     .subscribe {
         width: 100%;
-        padding: 10px 20px;
+        padding: 14px 20px;
         border-radius: 5px;
         background: linear-gradient(125deg,
                 rgb(17, 161, 17),
@@ -298,6 +299,7 @@
         border: none;
         cursor: pointer;
         transition: all .4s ease;
+        font-weight: bold;
     }
 
     .subscribe:hover {
@@ -312,7 +314,7 @@
 
     .footer-email {
         width: 100%;
-        padding: 10px 20px;
+        padding: 14px 20px;
         border-radius: 5px;
         margin-bottom: 10px;
         border: 1px solid rgb(0, 255, 0);
@@ -479,6 +481,754 @@
         }
 
     }
+
+
+    /* ── Shared Utilities ── */
+    .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(0, 200, 0, 0.1);
+        border: 1px solid green;
+        border-radius: 20px;
+        padding: 5px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        color: green;
+        margin-bottom: 18px;
+    }
+
+    .section-eyebrow span {
+        font-size: 18px;
+    }
+
+    .section-divider {
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, green, rgb(0, 255, 0));
+        border-radius: 2px;
+        margin: 14px auto 0;
+    }
+
+    .green-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Noto Sans", sans-serif;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        color: #000;
+        border: none;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 5px 15px rgba(0, 255, 0, 0.25);
+        text-decoration: none;
+    }
+
+    .green-btn:hover {
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.55);
+    }
+
+    .green-btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Noto Sans", sans-serif;
+        background: transparent;
+        color: #000;
+        border: 1px solid rgb(2, 175, 2);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+    }
+
+    .green-btn-outline:hover {
+        background: #EBF9EB;
+        transform: translateY(-2px) scale(1.04);
+    }
+
+
+    .outline-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Noto Sans", sans-serif;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgb(0, 255, 0);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .outline-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: 0.4s ease;
+        z-index: 0;
+    }
+
+    .outline-btn:hover {
+        color: #000;
+        transform: translateY(-2px);
+    }
+
+    .outline-btn:hover::before {
+        transform: scaleX(1);
+    }
+
+    .outline-btn span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .outline-btn .material-symbols-outlined {
+        position: relative;
+        z-index: 1;
+    }
+
+
+    @media (max-width:1034px) {
+        .cert-inner{
+            flex-direction: column;
+        }
+
+        .cert-right{
+            width: 100%;
+        }
+    }
+
+    @media (max-width:470px) {
+        .green-btn{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .green-btn-outline{
+            width: 100%;
+               display: flex;
+            justify-content: center;
+        }
+        
+    }
+
+
+    /* ══════════════════════════════════════
+           SECTION 1 — About Hero Banner
+        ══════════════════════════════════════ */
+    .about-hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 8% 80px;
+        background:
+            linear-gradient(180deg, rgba(0, 20, 0, 0.75), rgba(0, 0, 0, 0.88)),
+            url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400&q=80') center/cover no-repeat;
+        text-align: center;
+        position: relative;
+    }
+
+    .about-hero-content {
+        max-width: 800px;
+    }
+
+    .about-hero .section-eyebrow {
+        background: rgba(0, 255, 0, 0.1);
+        border-color: rgb(0, 255, 0);
+        color: rgb(0, 255, 0);
+    }
+
+    .about-hero h1 {
+        font-family: "Oldenburg", serif;
+        font-size: clamp(28px, 5vw, 62px);
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 22px;
+    }
+
+    .about-hero h1 span {
+        color: rgb(0, 255, 0);
+    }
+
+    .about-hero>.about-hero-content>p {
+        font-size: clamp(15px, 1.8vw, 18px);
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.75;
+        max-width: 640px;
+        margin: 0 auto 36px;
+    }
+
+    .hero-btn-row {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* breadcrumb */
+    .about-hero-breadcrumb {
+        position: absolute;
+        bottom: 26px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        white-space: nowrap;
+    }
+
+    .about-hero-breadcrumb span.sep {
+        color: green;
+    }
+
+    .about-hero-breadcrumb a {
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+    }
+
+    .about-hero-breadcrumb a:hover {
+        color: rgb(0, 255, 0);
+    }
+
+    .about-hero-breadcrumb strong {
+        color: rgb(0, 255, 0);
+    }
+
+    /* ══════════════════════════════════════
+           SECTION 2 — Our Story
+        ══════════════════════════════════════ */
+    .story-section {
+        padding: 100px 8%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        gap: 70px;
+        flex-wrap: wrap;
+    }
+
+    .story-img-col {
+        flex: 1;
+        min-width: 280px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px;
+        gap: 14px;
+    }
+
+    .story-img-col img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        transition: transform 0.4s ease;
+    }
+
+    .story-img-col img:hover {
+        transform: scale(1.03);
+    }
+
+    .story-img-col img:first-child {
+        grid-row: span 2;
+        border-radius: 16px;
+    }
+
+    .story-content {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    .story-content h2 {
+        font-family: "Oldenburg", serif;
+        font-size: clamp(24px, 3.2vw, 40px);
+        color: #0a2200;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .story-content p {
+        font-size: 16px;
+        line-height: 1.75;
+        color: #4a4a4a;
+        margin-bottom: 16px;
+    }
+
+    .story-highlight {
+        border-left: 4px solid green;
+        padding: 14px 20px;
+        background: rgba(0, 180, 0, 0.06);
+        border-radius: 0 10px 10px 0;
+        margin: 24px 0;
+        font-size: 16px;
+        font-style: italic;
+        color: #1a4d00;
+        line-height: 1.6;
+    }
+
+    .story-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 26px;
+    }
+
+    .story-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 180, 0, 0.35);
+        font-size: 13px;
+        font-weight: 600;
+        color: green;
+        background: rgba(0, 200, 0, 0.07);
+    }
+
+    .story-tag span {
+        font-size: 16px;
+    }
+
+    @media (max-width:1000px) {
+
+        .story-section{
+              padding: 100px 4%;
+            flex-direction: column;
+        }
+        .story-img-col{
+            width: 100%;
+        }
+    }
+
+    /* ══════════════════════════════════════
+           SECTION 3 — Mission / Values
+        ══════════════════════════════════════ */
+    .values-section {
+        padding: 100px 8%;
+        background: linear-gradient(160deg, #021a02, #003300, #011501);
+    }
+
+    .values-top {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 60px;
+        flex-wrap: wrap;
+    }
+
+    .values-top-left h2 {
+        font-family: "Oldenburg", serif;
+        font-size: clamp(24px, 3.2vw, 42px);
+        color: #fff;
+        line-height: 1.3;
+        margin-top: 14px;
+    }
+
+    .values-top-right p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+        max-width: 440px;
+    }
+
+    .values-section .section-eyebrow {
+        background: rgba(0, 255, 0, 0.08);
+        border-color: rgb(0, 255, 0);
+        color: rgb(0, 255, 0);
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+    }
+
+    .value-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(0, 255, 0, 0.18);
+        border-radius: 16px;
+        padding: 36px 26px;
+        transition: all 0.4s ease;
+        cursor: default;
+    }
+
+    .value-card:hover {
+        background: rgba(0, 255, 0, 0.07);
+        border-color: rgb(0, 255, 0);
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0, 255, 0, 0.18);
+    }
+
+    .value-icon {
+        width: 58px;
+        height: 58px;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8), rgb(13, 131, 13));
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+    }
+
+    .value-icon span {
+        font-size: 28px;
+        color: #000;
+    }
+
+    .value-card h3 {
+        font-size: 19px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 12px;
+    }
+
+    .value-card p {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.65;
+    }
+
+    /* ══════════════════════════════════════
+           SECTION 4 — Team
+        ══════════════════════════════════════ */
+    .team-section {
+        padding: 100px 8%;
+        background: #f4fbf4;
+    }
+
+    .team-section .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .team-section .section-header h2 {
+        font-family: "Oldenburg", serif;
+        font-size: clamp(24px, 3.2vw, 42px);
+        color: #0a2200;
+        margin: 14px 0 12px;
+    }
+
+    .team-section .section-header p {
+        font-size: 16px;
+        color: #555;
+        max-width: 560px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 28px;
+    }
+
+    .team-card {
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 180, 0, 0.14);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s ease;
+        text-align: center;
+    }
+
+    .team-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 40px rgba(0, 180, 0, 0.18);
+        border-color: green;
+    }
+
+    .team-img-wrap {
+        position: relative;
+        overflow: hidden;
+        height: 260px;
+    }
+
+    .team-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .team-card:hover .team-img-wrap img {
+        transform: scale(1.06);
+    }
+
+    .team-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 50%, rgba(0, 30, 0, 0.7));
+        opacity: 0;
+        transition: 0.4s ease;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 18px;
+        gap: 12px;
+    }
+
+    .team-card:hover .team-card-overlay {
+        opacity: 1;
+    }
+
+    .team-social-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8));
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .team-social-btn:hover {
+        transform: scale(1.12);
+    }
+
+    .team-social-btn span {
+        font-size: 17px;
+        color: #000;
+    }
+
+    .team-body {
+        padding: 20px 16px 24px;
+    }
+
+    .team-body h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0a2200;
+        margin-bottom: 4px;
+    }
+
+    .team-role {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        color: green;
+        background: rgba(0, 200, 0, 0.1);
+        border-radius: 20px;
+        padding: 3px 12px;
+        margin-bottom: 10px;
+    }
+
+    .team-body p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.55;
+    }
+
+    /* ══════════════════════════════════════
+           SECTION 5 — Certifications & CTA
+        ══════════════════════════════════════ */
+    .cert-section {
+        padding: 100px 8%;
+        background: #fff;
+    }
+
+    .cert-inner {
+        display: flex;
+        align-items: center;
+        gap: 70px;
+        flex-wrap: wrap;
+    }
+
+    .cert-content {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    .cert-content h2 {
+        font-family: "Oldenburg", serif;
+        font-size: clamp(24px, 3.2vw, 42px);
+        color: #0a2200;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .cert-content p {
+        font-size: 16px;
+        color: #4a4a4a;
+        line-height: 1.75;
+        margin-bottom: 30px;
+    }
+
+    .cert-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 36px;
+    }
+
+    .cert-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 15px;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .cert-check {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        border-radius: 50%;
+        background: linear-gradient(125deg, rgb(17, 161, 17), rgb(8, 255, 8));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1px;
+    }
+
+    .cert-check span {
+        font-size: 14px;
+        color: #000;
+        font-weight: 700;
+    }
+
+    .cert-btn-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    /* right side: big img + badge card */
+    .cert-right {
+        flex: 1;
+        min-width: 280px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cert-img-main {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 2px solid rgba(0, 180, 0, 0.18);
+    }
+
+    .cert-badges {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+    }
+
+    .cert-badge {
+        background: linear-gradient(160deg, #f4fbf4, #e8f8e8);
+        border: 1px solid rgba(0, 180, 0, 0.25);
+        border-radius: 14px;
+        padding: 18px 12px;
+        text-align: center;
+        transition: all 0.4s ease;
+    }
+
+    .cert-badge:hover {
+        border-color: green;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 200, 0, 0.18);
+    }
+
+    .cert-badge span.material-symbols-outlined {
+        font-size: 32px;
+        color: green;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .cert-badge p {
+        font-size: 12px;
+        font-weight: 700;
+        color: #0a2200;
+        line-height: 1.4;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+        .story-img-col {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 180px 180px;
+        }
+
+        .values-top {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .values-top-right p {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 680px) {
+
+        .story-section,
+        .cert-inner {
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .story-img-col {
+            grid-template-columns: 1fr;
+            grid-template-rows: 200px;
+        }
+
+        .story-img-col img:first-child {
+            grid-row: span 1;
+        }
+
+        .about-hero {
+            padding: 130px 6% 70px;
+        }
+
+        .cert-badges {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .hero-btn-row {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    @media (max-width: 440px) {
+        .cert-badges {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .cert-badge:last-child {
+            grid-column: span 2;
+        }
+    }
 </style>
 
 <body>
@@ -493,7 +1243,7 @@
         <div class="menus">
 
             <ul class="menuwraper">
-                <li><a href="index.html" >Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="activelink">About</a></li>
                 <li><a href="pages.html">Pages</a></li>
                 <li><a href="service.html">Service</a></li>
@@ -523,6 +1273,282 @@
         </div>
 
     </div>
+
+
+    <!-- ═══════════════════════════════════════════════════
+     SECTION 1 — About Hero Banner
+════════════════════════════════════════════════════ -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <div class="section-eyebrow">
+                <span class="material-symbols-outlined">eco</span>
+                Our Story
+            </div>
+            <h1>Rooted in Nature, <span>Grown with Purpose</span></h1>
+            <p>For over 15 years, we have been farming the land the honest way — no shortcuts, no chemicals, no
+                compromise. Just pure food, grown with heart.</p>
+        </div>
+        <div class="about-hero-breadcrumb">
+            <a href="#">Home</a>
+            <span class="sep">›</span>
+            <strong>About Us</strong>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+     SECTION 2 — Our Story
+════════════════════════════════════════════════════ -->
+    <section class="story-section">
+        <div class="story-img-col">
+            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=80" alt="Main farm view">
+            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" alt="Planting seeds">
+            <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&q=80" alt="Farmers at work">
+        </div>
+
+        <div class="story-content">
+            <div class="section-eyebrow">
+                <span class="material-symbols-outlined">history_edu</span>
+                Our Story
+            </div>
+            <h2>From a Small Plot of Land to a Thriving Organic Farm</h2>
+            <p>It all began in 2009 when our founder, Arjun Murugan, returned to his hometown in Karur with one simple
+                idea — to grow food the way his grandparents did, free from chemicals and full of nutrition.</p>
+            <p>What started as a small family plot has grown into over 200 acres of certified organic farmland, serving
+                thousands of families across Tamil Nadu with fresh, traceable produce.</p>
+
+            <div class="story-highlight">
+                "The soil is not just dirt. It is a living ecosystem that feeds us. When we protect it, it protects us."
+                <br><strong style="font-style:normal;font-size:13px;color:green;display:block;margin-top:8px">— Arjun
+                    Murugan, Founder</strong>
+            </div>
+
+            <p>Today, our team of 80+ farmers practices traditional intercropping, rainwater harvesting, and natural
+                composting — ensuring that every vegetable, fruit, and grain we grow carries the best of the earth.</p>
+
+            <div class="story-tags">
+                <span class="story-tag"><span class="material-symbols-outlined">grass</span> Est. 2009</span>
+                <span class="story-tag"><span class="material-symbols-outlined">groups</span> 80+ Farmers</span>
+                <span class="story-tag"><span class="material-symbols-outlined">landscape</span> 200+ Acres</span>
+                <span class="story-tag"><span class="material-symbols-outlined">verified</span> Certified Organic</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+     SECTION 3 — Mission & Values
+════════════════════════════════════════════════════ -->
+    <section class="values-section">
+        <div class="values-top">
+            <div class="values-top-left">
+                <div class="section-eyebrow">
+                    <span class="material-symbols-outlined">lightbulb</span>
+                    Mission & Values
+                </div>
+                <h2>What Drives Every Seed<br>We Plant</h2>
+            </div>
+            <div class="values-top-right">
+                <p>Our values are not a wall poster — they shape every decision we make on the farm, in our packaging,
+                    and in how we treat our farmers and customers.</p>
+            </div>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><span class="material-symbols-outlined">spa</span></div>
+                <h3>100% Chemical Free</h3>
+                <p>We have never used synthetic pesticides or fertilisers. Our crops grow in naturally composted soil,
+                    making them safer for you and the environment.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><span class="material-symbols-outlined">recycling</span></div>
+                <h3>Sustainable Practices</h3>
+                <p>Rainwater harvesting, solar-powered cold storage, and zero-waste packaging — sustainability is built
+                    into our operations, not bolted on.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><span class="material-symbols-outlined">people</span></div>
+                <h3>Farmer Welfare</h3>
+                <p>Our farmers earn above market wages, receive healthcare support, and are co-owners of the farm's
+                    success through our profit-sharing model.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><span class="material-symbols-outlined">visibility</span></div>
+                <h3>Full Transparency</h3>
+                <p>Every product carries a QR code that traces its journey — from the field it was grown in, to the
+                    farmer who grew it, to your doorstep.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><span class="material-symbols-outlined">local_florist</span></div>
+                <h3>Biodiversity First</h3>
+                <p>We grow over 60 varieties of native crops, preserving heirloom seeds and protecting the region's
+                    agricultural heritage for future generations.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><span class="material-symbols-outlined">favorite</span></div>
+                <h3>Community Health</h3>
+                <p>We run free nutrition workshops and distribute organic produce to local schools and tribal
+                    communities through our community health programme.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+     SECTION 4 — Meet the Team
+════════════════════════════════════════════════════ -->
+    <section class="team-section">
+        <div class="section-header">
+            <div class="section-eyebrow">
+                <span class="material-symbols-outlined">groups</span>
+                Our Team
+            </div>
+            <h2>The People Behind Every Harvest</h2>
+            <div class="section-divider"></div>
+            <p style="margin-top:16px">Passionate farmers, agronomists, and nutrition experts — all united by a love for
+                honest food.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+                        alt="Arjun Murugan">
+                    <div class="team-card-overlay">
+                        <button class="team-social-btn"><span class="material-symbols-outlined">mail</span></button>
+                        <button class="team-social-btn"><span class="material-symbols-outlined">language</span></button>
+                    </div>
+                </div>
+                <div class="team-body">
+                    <h3>Arjun Murugan</h3>
+                    <span class="team-role">Founder & Head Farmer</span>
+                    <p>15+ years in organic agriculture. Trained in biodynamic farming in Kerala and natural composting
+                        in Coimbatore.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+                        alt="Kavitha Rajan">
+                    <div class="team-card-overlay">
+                        <button class="team-social-btn"><span class="material-symbols-outlined">mail</span></button>
+                        <button class="team-social-btn"><span class="material-symbols-outlined">language</span></button>
+                    </div>
+                </div>
+                <div class="team-body">
+                    <h3>Kavitha Rajan</h3>
+                    <span class="team-role">Agronomist</span>
+                    <p>MSc in Agricultural Science, Tamil Nadu Agricultural University. Leads our soil health and crop
+                        rotation programmes.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+                        alt="Senthil Kumar">
+                    <div class="team-card-overlay">
+                        <button class="team-social-btn"><span class="material-symbols-outlined">mail</span></button>
+                        <button class="team-social-btn"><span class="material-symbols-outlined">language</span></button>
+                    </div>
+                </div>
+                <div class="team-body">
+                    <h3>Senthil Kumar</h3>
+                    <span class="team-role">Operations Head</span>
+                    <p>Manages harvesting schedules, cold-chain logistics, and ensures every delivery reaches customers
+                        the same day it is picked.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+                        alt="Meena Sundari">
+                    <div class="team-card-overlay">
+                        <button class="team-social-btn"><span class="material-symbols-outlined">mail</span></button>
+                        <button class="team-social-btn"><span class="material-symbols-outlined">language</span></button>
+                    </div>
+                </div>
+                <div class="team-body">
+                    <h3>Meena Sundari</h3>
+                    <span class="team-role">Nutrition & Community</span>
+                    <p>Certified nutritionist running our farm-to-school and community wellness programmes across rural
+                        Karur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+     SECTION 5 — Certifications & CTA
+════════════════════════════════════════════════════ -->
+    <section class="cert-section">
+        <div class="cert-inner">
+            <div class="cert-content">
+                <div class="section-eyebrow">
+                    <span class="material-symbols-outlined">verified</span>
+                    Trusted & Certified
+                </div>
+                <h2>Certified by the Best, Trusted by Thousands</h2>
+                <p>Our farm holds all major organic certifications in India and internationally. Every product you buy
+                    carries the assurance of rigorous, independent testing.</p>
+
+                <ul class="cert-list">
+                    <li>
+                        <div class="cert-check"><span class="material-symbols-outlined"
+                                style="font-size:14px">check</span></div>
+                        <span><strong>NPOP Certified</strong> — National Programme for Organic Production (India).
+                            Annual third-party audit of soil, water, and practices.</span>
+                    </li>
+                    <li>
+                        <div class="cert-check"><span class="material-symbols-outlined"
+                                style="font-size:14px">check</span></div>
+                        <span><strong>USDA Organic</strong> — Our export-grade produce meets United States Department of
+                            Agriculture organic standards.</span>
+                    </li>
+                    <li>
+                        <div class="cert-check"><span class="material-symbols-outlined"
+                                style="font-size:14px">check</span></div>
+                        <span><strong>EU Organic</strong> — Certified under EC 834/2007 for supply to European markets,
+                            ensuring complete traceability.</span>
+                    </li>
+                    <li>
+                        <div class="cert-check"><span class="material-symbols-outlined"
+                                style="font-size:14px">check</span></div>
+                        <span><strong>FSSAI Licensed</strong> — All processing and packaging units are fully compliant
+                            with Indian food safety regulations.</span>
+                    </li>
+                </ul>
+
+                <div class="cert-btn-row">
+                    <a href="#" class="green-btn">
+                        Shop Organic <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                    <a href="#" class="green-btn-outline">
+                        Contact us <span class="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-right">
+                <img class="cert-img-main" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&q=80"
+                    alt="Certified organic produce">
+                <div class="cert-badges">
+                    <div class="cert-badge">
+                        <span class="material-symbols-outlined">eco</span>
+                        <p>NPOP<br>Certified</p>
+                    </div>
+                    <div class="cert-badge">
+                        <span class="material-symbols-outlined">verified_user</span>
+                        <p>USDA<br>Organic</p>
+                    </div>
+                    <div class="cert-badge">
+                        <span class="material-symbols-outlined">public</span>
+                        <p>EU<br>Organic</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer class="footer">
 
