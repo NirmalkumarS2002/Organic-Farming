@@ -1408,9 +1408,32 @@
         }
     }
 
-    .foot-green{
+    .foot-green {
         margin-bottom: 30px;
     }
+
+    @media (max-width:768px) {
+        .side1 {
+            top: 45%;
+            transform: translateY(-50%);
+            left: 5%;
+        }
+
+        .side2 {
+            top: 45%;
+            transform: translateY(-50%);
+            right: 5%;
+        }
+
+            .hero-section h1 {
+                margin-bottom: 10px;
+            }
+
+            .hero-section>p{
+                line-height: 1.7;
+            }
+    }
+    
 </style>
 
 <body>
@@ -2057,53 +2080,53 @@
 
         const btn = document.getElementById("footGreenBtn");
 
-btn.addEventListener("click", function () {
+        btn.addEventListener("click", function () {
 
-    const nameInput = document.getElementById("ctaName");
-    const emailInput = document.getElementById("ctaEmail");
+            const nameInput = document.getElementById("ctaName");
+            const emailInput = document.getElementById("ctaEmail");
 
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const nameRegex = /^[A-Za-z\s]+$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const nameRegex = /^[A-Za-z\s]+$/;
 
-    if (!name) {
-        alert("Enter your name");
-        return;
-    }
+            if (!name) {
+                alert("Enter your name");
+                return;
+            }
 
-    if (!nameRegex.test(name)) {
-        alert("Name should contain only letters");
-        return;
-    }
+            if (!nameRegex.test(name)) {
+                alert("Name should contain only letters");
+                return;
+            }
 
-    if (!email) {
-        alert("Enter your email");
-        return;
-    }
+            if (!email) {
+                alert("Enter your email");
+                return;
+            }
 
-    if (!emailRegex.test(email)) {
-        alert("Enter a valid email");
-        return;
-    }
+            if (!emailRegex.test(email)) {
+                alert("Enter a valid email");
+                return;
+            }
 
-    this.innerHTML = "✓ We will contact you soon!";
+            this.innerHTML = "✓ We will contact you soon!";
 
-    nameInput.value = "";
-    emailInput.value = "";
+            nameInput.value = "";
+            emailInput.value = "";
 
-    setTimeout(() => {
-        this.innerHTML = `
+            setTimeout(() => {
+                this.innerHTML = `
             Get Started Today
             <span class="material-symbols-outlined">arrow_outward</span>
         `;
-    }, 3000);
-});
+            }, 3000);
+        });
 
-document.getElementById("ctaName").addEventListener("input", function () {
-    this.value = this.value.replace(/[^A-Za-z\s]/g, "");
-});
+        document.getElementById("ctaName").addEventListener("input", function () {
+            this.value = this.value.replace(/[^A-Za-z\s]/g, "");
+        });
 
 
     </script>
