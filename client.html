@@ -352,6 +352,11 @@
             .meeting-card { flex-direction: column; }
             .avatar { width: 34px; height: 34px; font-size: 15px; }
         }
+
+        input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear{
+    display:none;
+}
     </style>
 </head>
 <body>
@@ -360,7 +365,7 @@
 <div class="sidebar" id="sidebar">
     <div class="logo">
         <div class="logo-img">
-            <a href="index.html"><img src="./src/logo.webp" alt="Stackly logo"></a>
+            <a href="client.html"><img src="./src/logo.webp" alt="Stackly logo"></a>
         </div>
         <span class="close-btn" id="closeBtn"><i class="fa-solid fa-xmark"></i></span>
     </div>
@@ -461,7 +466,7 @@
             <div class="table-box">
                 <div class="table-header">
                     <h2>Recent Orders</h2>
-                    <button class="btn-green" onclick="switchPage('shop')">+ New Order</button>
+                    <button class="btn-green errorpage" onclick="switchPage('shop')">+ New Order</button>
                 </div>
                 <table>
                     <thead>
@@ -590,7 +595,7 @@
                 <h2>Available Produce</h2>
                 <div style="display:flex;gap:10px;">
                     <button class="btn-outline errorpage">Filter by Category</button>
-                    <button class="btn-green errorpage">🛒 Place Bulk Order</button>
+                    <button class="btn-green errorpage"> Place Bulk Order</button>
                 </div>
             </div>
             <table>
@@ -714,7 +719,7 @@
                 <h2>All Orders</h2>
                 <div style="display:flex;gap:10px;">
                     <button class="btn-outline errorpage">Export</button>
-                    <button class="btn-green" onclick="switchPage('shop')">+ New Order</button>
+                    <button class="btn-green errorpage" onclick="switchPage('shop')">+ New Order</button>
                 </div>
             </div>
             <table>
@@ -1033,22 +1038,23 @@
     <!-- ===== PROFILE & SETTINGS ===== -->
     <div class="content" id="page-settings" style="padding:22px;">
         <div class="page-title">Profile & Settings</div>
-        <div class="page-sub">Manage your buyer profile, delivery address and account preferences</div>
+        <div class="page-sub">Manage your farmer profile, delivery address and account preferences</div>
 
         <div class="grid-2">
             <div>
-                <div class="setting-section">
-                    <h3><i class="fa-solid fa-store"></i> Buyer Profile</h3>
-                    <label style="color:#3a5a3a;font-size:12px;">Business Name</label>
-                    <input class="input-field" value="Nature's Basket">
-                    <label style="color:#3a5a3a;font-size:12px;">Email Address</label>
-                    <input class="input-field" value="buyer@naturesbasket.com">
-                    <label style="color:#3a5a3a;font-size:12px;">Contact Number</label>
-                    <input class="input-field" value="+91 98765 43210">
-                    <label style="color:#3a5a3a;font-size:12px;">Delivery Address</label>
-                    <input class="input-field" value="42 Green Park, Anna Nagar, Chennai - 600040">
-                    <button class="btn-green" style="width:100%;padding:12px;border-radius:12px;margin-top:4px;">Save Changes</button>
-                </div>
+                    <div class="setting-section">
+                        <h3><i class="fa-solid fa-seedling"></i> Farm Profile</h3>
+                        <label style="color:#3a5a3a;font-size:12px;">Farm / Company Name</label>
+                        <input class="input-field" value="Stackly Organic Farms">
+                        <label style="color:#3a5a3a;font-size:12px;">Email Address</label>
+                        <input class="input-field" value="client@stackly.com">
+                        <label style="color:#3a5a3a;font-size:12px;">Contact Number</label>
+                        <input class="input-field" value="+91 98765 43210">
+                        <label style="color:#3a5a3a;font-size:12px;">Farm Address</label>
+                        <input class="input-field" value="12 Organic Valley, Madurai - 625001">
+                        <button class="btn-green"
+                            style="width:100%;padding:12px;border-radius:12px;margin-top:4px;">Save Changes</button>
+                    </div>
 
                 <div class="setting-section">
                     <h3><i class="fa-solid fa-lock"></i> Security Settings</h3>
@@ -1109,7 +1115,7 @@
                     <div class="info-row"><span class="info-label">Email</span><span class="info-value">meena@stackly.com</span></div>
                     <div class="info-row"><span class="info-label">Phone</span><span class="info-value">+91 90000 12345</span></div>
                     <div class="info-row"><span class="info-label">Support Hours</span><span class="info-value">Mon–Sat, 8AM–6PM</span></div>
-                    <button class="btn-green" style="width:100%;margin-top:14px;padding:10px;border-radius:10px;">Contact Support</button>
+                    <button class="btn-green errorpage" style="width:100%;margin-top:14px;padding:10px;border-radius:10px;">Contact Support</button>
                 </div>
             </div>
         </div>
@@ -1178,7 +1184,7 @@
         /* Input validation */
         /* Input validation */
         const farmName = document.querySelector('input[value="Stackly Organic Farms"]');
-        const emailField = document.querySelector('input[value="admin@stackly.com"]');
+        const emailField = document.querySelector('input[value="client@stackly.com"]');
         const phoneField = document.querySelector('input[value="+91 98765 43210"]');
         const addressField = document.querySelector('input[value="12 Organic Valley, Madurai - 625001"]');
         const currentPassword = document.querySelector('input[placeholder="Enter Current Password"]');
