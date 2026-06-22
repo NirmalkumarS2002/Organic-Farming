@@ -11,8 +11,7 @@
         rel="stylesheet">
 
     <!-- Google Icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 
     <style>
         * {
@@ -200,6 +199,72 @@
                 width: 180px;
             }
         }
+
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-btn {
+            height: 46px;
+            background: #f5f5f5;
+            border: 1px solid #cfe7d2;
+            border-radius: 10px;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .select-btn:hover {
+            border-color: #16a34a;
+               box-shadow: 0 0 0 4px rgba(34, 197, 94, .15);
+        }
+
+        .selected {
+            color: #111827;
+            font-size: 13px;
+        }
+
+        .arrow {
+            color: #16a34a;
+            transition: .3s;
+        }
+
+        .options {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: #f5f5f5;
+            border: 1px solid #cfe7d2;
+            border-radius: 10px;
+            overflow: hidden;
+            list-style: none;
+            display: none;
+            z-index: 100;
+        }
+
+        .options.active {
+            display: block;
+        }
+
+        .options li {
+            padding: 15px 18px;
+            cursor: pointer;
+            transition: .3s;
+            font-size: 13px;
+        }
+
+        .options li:hover {
+            background:  #16a34a;
+        }
+
+        .custom-select.open .arrow {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
@@ -228,12 +293,21 @@
                 <div class="input-box">
                     <span class="material-symbols-outlined icon">agriculture</span>
 
-                    <select id="role">
-                        <option value="">Select User Type</option>
-                        <option value="admin">Admin</option>
-                        <option value="client">Client</option>
-                        <option value="farmer">Farmer</option>
-                    </select>
+                    <div class="custom-select">
+
+                        <div class="select-btn">
+                            <span class="selected">Select User Type</span>
+                            <span class="material-symbols-outlined arrow">expand_more</span>
+                        </div>
+
+                        <ul class="options">
+                            <li data-value="admin">Farm Admin</li>
+                            <li data-value="client">Farmer</li>
+                        </ul>
+
+                        <input type="hidden" id="role">
+
+                    </div>
                 </div>
 
                 <small class="error" id="roleError"></small>
@@ -257,8 +331,7 @@
                 <div class="input-box">
                     <span class="material-symbols-outlined icon">call</span>
 
-                    <input type="tel" id="mobile" maxlength="10"
-                        placeholder="Enter mobile number">
+                    <input type="tel" id="mobile" maxlength="10" placeholder="Enter mobile number">
                 </div>
 
                 <small class="error" id="mobileError"></small>
@@ -270,8 +343,7 @@
                 <div class="input-box">
                     <span class="material-symbols-outlined icon">mail</span>
 
-                    <input type="email" id="email"
-                        placeholder="Enter your email address">
+                    <input type="email" id="email" placeholder="Enter your email address">
                 </div>
 
                 <small class="error" id="emailError"></small>
@@ -297,68 +369,97 @@
 
     <script>
 
-       const form = document.getElementById("registerForm");
+        const form = document.getElementById("registerForm");
 
-form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", function (e) {
 
-    e.preventDefault();
+            e.preventDefault();
 
-    document.getElementById("roleError").innerText = "";
-    document.getElementById("nameError").innerText = "";
-    document.getElementById("mobileError").innerText = "";
-    document.getElementById("emailError").innerText = "";
+            document.getElementById("roleError").innerText = "";
+            document.getElementById("nameError").innerText = "";
+            document.getElementById("mobileError").innerText = "";
+            document.getElementById("emailError").innerText = "";
 
-    let valid = true;
+            let valid = true;
 
-    const role = document.getElementById("role").value;
-    const name = document.getElementById("name").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const email = document.getElementById("email").value.trim();
+            const role = document.getElementById("role").value;
+            const name = document.getElementById("name").value.trim();
+            const mobile = document.getElementById("mobile").value.trim();
+            const email = document.getElementById("email").value.trim();
 
-    if (role === "") {
-        document.getElementById("roleError").innerText =
-            "Please select a user type";
-        valid = false;
-    }
+            if (role === "") {
+                document.getElementById("roleError").innerText =
+                    "Please select a user type";
+                valid = false;
+            }
 
-    // Name Validation
-    if (!/^[A-Za-z\s]{3,50}$/.test(name)) {
-        document.getElementById("nameError").innerText =
-            "Name should contain only letters";
-        valid = false;
-    }
+            // Name Validation
+            if (!/^[A-Za-z\s]{3,50}$/.test(name)) {
+                document.getElementById("nameError").innerText =
+                    "Name should contain only letters";
+                valid = false;
+            }
 
-    // Mobile Validation
-    if (!/^[0-9]{10}$/.test(mobile)) {
-        document.getElementById("mobileError").innerText =
-            "Enter a valid 10 digit mobile number";
-        valid = false;
-    }
+            // Mobile Validation
+            if (!/^[0-9]{10}$/.test(mobile)) {
+                document.getElementById("mobileError").innerText =
+                    "Enter a valid 10 digit mobile number";
+                valid = false;
+            }
 
-    // Email Validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            // Email Validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailPattern.test(email)) {
-        document.getElementById("emailError").innerText =
-            "Enter a valid email address";
-        valid = false;
-    }
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerText =
+                    "Enter a valid email address";
+                valid = false;
+            }
 
-    if (valid) {
-        alert("Registration Successful");
-        form.reset();
-    }
-});
+            if (valid) {
+                alert("Registration Successful");
+                form.reset();
+            }
+        });
 
-// Name Field - Numbers & Special Characters Block
-document.getElementById("name").addEventListener("input", function () {
-    this.value = this.value.replace(/[^A-Za-z\s]/g, "");
-});
+        // Name Field - Numbers & Special Characters Block
+        document.getElementById("name").addEventListener("input", function () {
+            this.value = this.value.replace(/[^A-Za-z\s]/g, "");
+        });
 
-// Mobile Field - Only Numbers Allow
-document.getElementById("mobile").addEventListener("input", function () {
-    this.value = this.value.replace(/\D/g, "").slice(0, 10);
-});
+        // Mobile Field - Only Numbers Allow
+        document.getElementById("mobile").addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "").slice(0, 10);
+        });
+
+        const customSelect = document.querySelector(".custom-select");
+        const selectBtn = document.querySelector(".select-btn");
+        const options = document.querySelector(".options");
+        const selected = document.querySelector(".selected");
+        const hiddenInput = document.querySelector("#role");
+
+        selectBtn.addEventListener("click", () => {
+            options.classList.toggle("active");
+            customSelect.classList.toggle("open");
+        });
+
+        document.querySelectorAll(".options li").forEach(option => {
+            option.addEventListener("click", () => {
+
+                selected.textContent = option.textContent;
+                hiddenInput.value = option.dataset.value;
+
+                options.classList.remove("active");
+                customSelect.classList.remove("open");
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!customSelect.contains(e.target)) {
+                options.classList.remove("active");
+                customSelect.classList.remove("open");
+            }
+        });
 
     </script>
 

@@ -967,22 +967,22 @@ body::before{
   });
 
 
-  // PASSWORD SHOW / HIDE
-  // const eyepass = document.getElementById("password");
-  // const togglePassword = document.getElementById("togglePassword");
-  // const eyeIcon = togglePassword.querySelector("i");
-  // 
-  // togglePassword.addEventListener("click", () => {
-  // 
-  //     if (eyepass.type === "password") {
-  //         eyepass.type = "text";
-  //         eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
-  //     } else {
-  //         eyepass.type = "password";
-  //         eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
-  //     }
-  // 
-  // });
+
+  const eyepass = document.getElementById("password");
+  const togglePassword = document.getElementById("togglePassword");
+  const eyeIcon = togglePassword.querySelector("i");
+  
+  togglePassword.addEventListener("click", () => {
+  
+      if (eyepass.type === "password") {
+          eyepass.type = "text";
+          eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
+      } else {
+          eyepass.type = "password";
+          eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
+      }
+  
+  });
 </script>
 
 </body>

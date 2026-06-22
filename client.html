@@ -1,0 +1,1261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly Organic Farms – Client Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f7f0;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #1a5c28, #0d3d18);
+            padding: 20px;
+            transition: 0.3s;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            pointer-events: none;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 6px;
+        }
+
+        .logo-img { display: flex; align-items: center; gap: 10px; }
+        .logo-img img { width: clamp(140px, 16vw, 180px); }
+
+        .close-btn { display: none; font-size: 22px; color: white; cursor: pointer; margin-top: 5px; }
+
+        .menu { list-style: none; }
+        .menu li { margin-bottom: 4px; }
+
+        .menu li a {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 14px; border-radius: 10px;
+            text-decoration: none; color: #b2d8b2;
+            transition: 0.25s; font-size: 13.5px; cursor: pointer;
+        }
+        .menu li a i { width: 18px; text-align: center; }
+
+        .menu li a:hover,
+        .menu li.active a {
+            background: rgba(61,158,61,0.25); color: #ffffff; font-weight: 600;
+        }
+        .menu li.active a {
+            background: #3d9e3d; color: #ffffff;
+            box-shadow: 0 4px 15px rgba(61,158,61,0.4);
+        }
+
+        .menu-divider {
+            color: #5a8a5a; font-size: 10px; font-weight: 600;
+            letter-spacing: 1.2px; text-transform: uppercase;
+            padding: 14px 14px 6px;
+        }
+
+        /* ===== MAIN ===== */
+        .main { flex: 1; overflow: auto; }
+
+        .topbar {
+            height: 68px; background: #ffffff;
+            border-bottom: 1px solid #e0f0e0;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 24px; position: sticky; top: 0; z-index: 10;
+            box-shadow: 0 2px 10px rgba(26,92,40,0.06);
+        }
+
+        .topbar-left { display: flex; align-items: center; gap: 15px; }
+        .menu-btn { display: none; color: #1a6b2e; font-size: 22px; cursor: pointer; }
+        .topbar h2 { color: #1a2e1a; font-size: 17px; font-weight: 600; }
+        .topbar-right { display: flex; align-items: center; gap: 14px; }
+
+        .cert-badges { display: flex; gap: 6px; }
+        .cert-badge {
+            background: #e8f5e9; border: 1px solid #a5d6a7;
+            color: #2e7d32; font-size: 10px; font-weight: 600;
+            padding: 3px 9px; border-radius: 20px;
+        }
+
+        .admin-info { display: flex; align-items: center; gap: 10px; color: #1a2e1a; }
+        .avatar {
+            width: 42px; height: 42px; border-radius: 50%;
+            background: linear-gradient(135deg, #2e7d32, #66bb6a);
+            color: #fff; font-weight: 700; font-size: 17px;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+        }
+
+        /* ===== CONTENT ===== */
+        .content { display: none; }
+        .content.active { display: block; }
+
+        /* ===== CARDS ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px; margin-bottom: 18px;
+        }
+
+        .card {
+            background: #ffffff; border-radius: 16px;
+            padding: 18px 20px; border: 1px solid #e0f0e0;
+            display: flex; align-items: center; gap: 14px; transition: 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26,92,40,0.1); }
+
+        .card-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .ci-green  { background: #e8f5e9; color: #2e7d32; }
+        .ci-lime   { background: #f1f8e9; color: #558b2f; }
+        .ci-teal   { background: #e0f2f1; color: #00695c; }
+        .ci-yellow { background: #fff8e1; color: #f57f17; }
+        .ci-red    { background: #fce4ec; color: #c62828; }
+        .ci-blue   { background: #e3f2fd; color: #1565c0; }
+
+        .card h2 { color: #1a2e1a; margin-bottom: 3px; font-size: 22px; }
+        .card p  { color: #5a7a5a; font-size: 12.5px; }
+
+        /* ===== TABLE BOX ===== */
+        .table-box {
+            background: #ffffff; border-radius: 16px;
+            padding: 20px; border: 1px solid #e0f0e0;
+            overflow: auto; margin-bottom: 18px;
+        }
+
+        .table-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 16px;
+            flex-wrap: wrap; gap: 10px;
+        }
+        .table-header h2 { color: #1a2e1a; font-size: 15px; }
+
+        .btn-green {
+            background: linear-gradient(135deg, #2e7d32, #43a047);
+            color: white; border: none; padding: 10px 18px;
+            border-radius: 10px; font-weight: 600; font-size: 13px;
+            cursor: pointer; transition: 0.25s;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.3);
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(46,125,50,0.4); }
+
+        .btn-outline {
+            border: 1.5px solid #43a047; background: transparent;
+            padding: 8px 14px; border-radius: 10px;
+            font-weight: 500; cursor: pointer; font-size: 12.5px;
+            color: #2e7d32; font-family: 'Poppins', sans-serif;
+        }
+
+        table { width: 100%; border-collapse: collapse; min-width: 550px; }
+        table th {
+            text-align: left; padding: 11px 12px;
+            color: #2e7d32; font-size: 12px;
+            border-bottom: 2px solid #e8f5e9;
+        }
+        table td { padding: 12px; border-top: 1px solid #f1f8f1; color: #3a5a3a; font-size: 12.5px; }
+        table tr:hover td { background: #f9fdf9; }
+
+        /* ===== STATUS ===== */
+        .status { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .s-active  { background: #e8f5e9; color: #2e7d32; }
+        .s-pending { background: #fff8e1; color: #f57f17; }
+        .s-closed  { background: #fce4ec; color: #c62828; }
+        .s-blue    { background: #e3f2fd; color: #1565c0; }
+        .s-purple  { background: #f3e5f5; color: #6a1b9a; }
+
+        /* ===== PAGE HEADER ===== */
+        .page-title { color: #1a2e1a; font-size: 21px; font-weight: 700; margin-bottom: 4px; }
+        .page-sub   { color: #7a9a7a; font-size: 13px; margin-bottom: 20px; }
+
+        /* ===== GRID 2 ===== */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+
+        /* ===== INFO BOX ===== */
+        .info-box { background: #ffffff; border-radius: 14px; padding: 20px; border: 1px solid #e0f0e0; }
+        .info-box h3 {
+            color: #2e7d32; font-size: 13.5px; margin-bottom: 14px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .info-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 9px 0; border-bottom: 1px solid #f1f8f1;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #7a9a7a; font-size: 12.5px; }
+        .info-value { color: #2a4a2a; font-size: 12.5px; font-weight: 500; }
+
+        /* ===== PRODUCE CARDS ===== */
+        .produce-card {
+            background: #f9fdf9; border-radius: 12px;
+            padding: 14px 16px; border: 1px solid #e0f0e0;
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 10px;
+        }
+        .produce-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: linear-gradient(135deg, #2e7d32, #66bb6a);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .produce-name { color: #1a2e1a; font-size: 14px; font-weight: 500; }
+        .produce-sub  { color: #7a9a7a; font-size: 11.5px; margin-top: 2px; }
+        .badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: auto; }
+
+        /* ===== SETTINGS ===== */
+        .setting-section {
+            background: #ffffff; border-radius: 14px;
+            padding: 20px; border: 1px solid #e0f0e0; margin-bottom: 16px;
+        }
+        .setting-section h3 {
+            color: #2e7d32; font-size: 14px; margin-bottom: 14px;
+            padding-bottom: 10px; border-bottom: 1px solid #e8f5e9;
+        }
+        .setting-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 11px 0; border-bottom: 1px solid #f1f8f1;
+        }
+        .setting-row:last-child { border-bottom: none; }
+        .setting-label { color: #1a2e1a; font-size: 13.5px; }
+        .setting-desc  { color: #7a9a7a; font-size: 11.5px; margin-top: 2px; }
+
+        .toggle {
+            width: 44px; height: 24px; border-radius: 20px;
+            background: #ccc; position: relative; cursor: pointer;
+            transition: 0.3s; flex-shrink: 0;
+        }
+        .toggle.on { background: #2e7d32; }
+        .toggle::after {
+            content: ''; position: absolute; width: 18px; height: 18px;
+            border-radius: 50%; background: white; top: 3px; left: 3px; transition: 0.3s;
+        }
+        .toggle.on::after { left: 23px; }
+
+        .input-field {
+            background: #f0f7f0; border: 1.5px solid #c8e6c9;
+            border-radius: 10px; padding: 10px 14px;
+            color: #2a4a2a; font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            outline: none; width: 100%; margin-bottom: 12px; transition: 0.2s;
+        }
+        .input-field:focus { border-color: #43a047; background: #fff; }
+
+        .passbox { position: relative; }
+        .pass-icon {
+            position: absolute; top: 50%; right: 12px;
+            transform: translateY(-70%); cursor: pointer;
+            font-size: 20px; color: #7a9a7a;
+        }
+
+        /* ===== DELIVERY CARDS ===== */
+        .meeting-card {
+            background: #f9fdf9; border-radius: 14px;
+            padding: 16px; border: 1px solid #e0f0e0;
+            margin-bottom: 12px; display: flex; gap: 16px; align-items: flex-start;
+        }
+        .meeting-date {
+            background: #e8f5e9; border-radius: 10px;
+            padding: 10px 14px; text-align: center; flex-shrink: 0;
+        }
+        .meeting-day   { color: #2e7d32; font-size: 22px; font-weight: 700; line-height: 1; }
+        .meeting-month { color: #558b2f; font-size: 11px; margin-top: 2px; font-weight: 600; }
+        .meeting-title { color: #1a2e1a; font-size: 14px; font-weight: 500; }
+        .meeting-meta  { color: #7a9a7a; font-size: 11.5px; margin-top: 5px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+        /* ===== PROGRESS ===== */
+        .progress-bar  { border-radius: 20px; height: 8px; margin: 6px 0 4px; background: #e8f5e9; }
+        .progress-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #2e7d32, #66bb6a); }
+        .progress-label { display: flex; justify-content: space-between; color: #7a9a7a; font-size: 11.5px; }
+
+        .report-card {
+            background: #f9fdf9; border-radius: 12px;
+            padding: 14px 16px; border: 1px solid #e0f0e0; margin-bottom: 12px;
+        }
+        .report-title { color: #1a2e1a; font-size: 13.5px; font-weight: 500; margin-bottom: 6px; }
+
+        /* ===== HERO BANNER ===== */
+        .hero-banner {
+            background: linear-gradient(135deg, #1a5c28 0%, #2e7d32 40%, #43a047 100%);
+            border-radius: 16px; padding: 24px 28px; margin-bottom: 18px;
+            position: relative; overflow: hidden;
+        }
+        .hero-banner::after {
+            content: '🌿'; position: absolute; right: 20px; top: 50%;
+            transform: translateY(-50%); font-size: 80px; opacity: 0.15;
+        }
+        .hero-title { color: #ffffff; font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .hero-sub   { color: #a5d6a7; font-size: 13px; }
+        .hero-badges { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+        .hero-badge {
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+            color: #ffffff; font-size: 11px; font-weight: 600;
+            padding: 4px 12px; border-radius: 20px;
+        }
+
+        /* ===== TRACK ORDER STEPS ===== */
+        .track-steps {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 10px;  gap: 10px;
+            overflow-x: auto;
+        }
+        .track-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; min-width: 80px; }
+        .step-circle {
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 16px; font-weight: 700; border: 2px solid #e0f0e0;
+        }
+        .step-circle.done  { background: #2e7d32; color: white; border-color: #2e7d32; }
+        .step-circle.active { background: #e8f5e9; color: #2e7d32; border-color: #2e7d32; }
+        .step-circle.pending { background: #f5f5f5; color: #bbb; border-color: #e0e0e0; }
+        .step-label { color: #5a7a5a; font-size: 11px; text-align: center; font-weight: 500; }
+        .step-connector { flex: 1; height: 2px; background: #e0f0e0; min-width: 20px; margin-top: -28px; }
+        .step-connector.done { background: #2e7d32; }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:768px) {
+            .menu-btn  { display: block; }
+            .close-btn { display: block; }
+            .sidebar   { position: fixed; left: -270px; top: 0; width: 260px; height: 100vh; z-index: 999; }
+            .sidebar.showSidebar { left: 0; }
+            .grid-2    { grid-template-columns: 1fr; }
+            .cert-badges { display: none; }
+        }
+        @media(max-width:500px) {
+            .admin-info h4, .admin-info p { display: none; }
+            .meeting-card { flex-direction: column; }
+            .avatar { width: 34px; height: 34px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<div class="sidebar" id="sidebar">
+    <div class="logo">
+        <div class="logo-img">
+            <a href="index.html"><img src="./src/logo.webp" alt="Stackly logo"></a>
+        </div>
+        <span class="close-btn" id="closeBtn"><i class="fa-solid fa-xmark"></i></span>
+    </div>
+
+    <div class="menu-divider">My Account</div>
+    <ul class="menu">
+        <li class="active" data-page="dashboard"><a><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+        <li data-page="shop"><a><i class="fa-solid fa-leaf"></i> Shop Organic</a></li>
+        <li data-page="orders"><a><i class="fa-solid fa-box-open"></i> My Orders</a></li>
+        <li data-page="deliveries"><a><i class="fa-solid fa-truck"></i> Track Deliveries</a></li>
+        <li data-page="invoices"><a><i class="fa-solid fa-file-invoice-dollar"></i> Invoices & Payments</a></li>
+        <div class="menu-divider">Support</div>
+        <li data-page="settings"><a><i class="fa-solid fa-gear"></i> Profile & Settings</a></li>
+        <li id="logoutItem"><a><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+    </ul>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></div>
+            <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="topbar-right">
+            <div class="cert-badges">
+                <span class="cert-badge">🌿 NPOP</span>
+                <span class="cert-badge">🌎 USDA Organic</span>
+                <span class="cert-badge">🇪🇺 EU Organic</span>
+            </div>
+            <div class="admin-info">
+                    <div class="avatar" id="avatarEl">A</div>
+                    <div>
+                        <h4 id="adminEmail" style="font-size:13px;font-weight:600;">client@stackly.com</h4>
+                        <p style="color:#7a9a7a;font-size:11px;">Farmer</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div class="content active" id="page-dashboard">
+        <div style="padding:22px 22px 0;">
+
+            <div class="hero-banner">
+                <div>
+                    <div class="hero-title">Welcome back, Nature's Basket 🌱</div>
+                    <div class="hero-sub">Your trusted source for certified organic produce — directly from the farm.</div>
+                    <div class="hero-badges">
+                        <span class="hero-badge">NPOP Certified</span>
+                        <span class="hero-badge">USDA Organic</span>
+                        <span class="hero-badge">EU Organic</span>
+                        <span class="hero-badge">FSSAI Licensed</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon ci-green"><i class="fa-solid fa-box-open"></i></div>
+                    <div><h2>22</h2><p>Total Orders Placed</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon ci-lime"><i class="fa-solid fa-truck"></i></div>
+                    <div><h2>3</h2><p>Active Deliveries</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon ci-teal"><i class="fa-solid fa-circle-check"></i></div>
+                    <div><h2>18</h2><p>Completed Orders</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon ci-yellow"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div><h2>₹4.2L</h2><p>Total Spent</p></div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon ci-blue"><i class="fa-solid fa-clock"></i></div>
+                    <div><h2>1</h2><p>Pending Payment</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon ci-red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div><h2>0</h2><p>Cancelled Orders</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon ci-lime"><i class="fa-solid fa-leaf"></i></div>
+                    <div><h2>6</h2><p>Produce Types Bought</p></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon ci-green"><i class="fa-solid fa-star"></i></div>
+                    <div><h2>4.9★</h2><p>Satisfaction Score</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding:0 22px 22px;">
+            <div class="table-box">
+                <div class="table-header">
+                    <h2>Recent Orders</h2>
+                    <button class="btn-green" onclick="switchPage('shop')">+ New Order</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Produce</th>
+                            <th>Qty</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Delivery Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-2201</td>
+                            <td>Organic Turmeric</td>
+                            <td>25 kg</td>
+                            <td>₹8,750</td>
+                            <td><span class="status s-active">Delivered</span></td>
+                            <td>15 Jun 2026</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-2202</td>
+                            <td>Baby Spinach</td>
+                            <td>10 kg</td>
+                            <td>₹2,400</td>
+                            <td><span class="status s-pending">In Transit</span></td>
+                            <td>23 Jun 2026</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-2203</td>
+                            <td>Cherry Tomatoes</td>
+                            <td>50 kg</td>
+                            <td>₹9,500</td>
+                            <td><span class="status s-blue">Processing</span></td>
+                            <td>26 Jun 2026</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-2204</td>
+                            <td>Moringa Powder</td>
+                            <td>5 kg</td>
+                            <td>₹3,200</td>
+                            <td><span class="status s-pending">Pending Payment</span></td>
+                            <td>28 Jun 2026</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-2200</td>
+                            <td>Kale Microgreens</td>
+                            <td>8 kg</td>
+                            <td>₹4,800</td>
+                            <td><span class="status s-active">Delivered</span></td>
+                            <td>10 Jun 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3><i class="fa-solid fa-leaf"></i> My Favourite Produce</h3>
+                    <div class="produce-card">
+                        <div class="produce-icon">🌿</div>
+                        <div>
+                            <div class="produce-name">Organic Turmeric</div>
+                            <div class="produce-sub">Spices • Plot A, Madurai</div>
+                        </div>
+                        <span class="badge s-active">8 Orders</span>
+                    </div>
+                    <div class="produce-card">
+                        <div class="produce-icon">🥬</div>
+                        <div>
+                            <div class="produce-name">Baby Spinach</div>
+                            <div class="produce-sub">Leafy Greens • Plot B, Ooty</div>
+                        </div>
+                        <span class="badge s-blue">6 Orders</span>
+                    </div>
+                    <div class="produce-card">
+                        <div class="produce-icon">🍅</div>
+                        <div>
+                            <div class="produce-name">Cherry Tomatoes</div>
+                            <div class="produce-sub">Vegetables • Plot C, Coimbatore</div>
+                        </div>
+                        <span class="badge s-active">5 Orders</span>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3><i class="fa-solid fa-chart-line"></i> My Purchase Summary</h3>
+                    <div class="info-row"><span class="info-label">This Month Orders</span><span class="info-value">4</span></div>
+                    <div class="info-row"><span class="info-label">This Month Spend</span><span class="info-value">₹23,450</span></div>
+                    <div class="info-row"><span class="info-label">Avg Order Value</span><span class="info-value">₹5,862</span></div>
+                    <div class="info-row"><span class="info-label">Loyalty Points</span><span class="info-value" style="color:#2e7d32;font-weight:600;">1,240 pts</span></div>
+                    <div class="info-row"><span class="info-label">Account Since</span><span class="info-value">01 Jan 2026</span></div>
+                    <div class="info-row"><span class="info-label">Sales Rep</span><span class="info-value">Meena Sundar</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SHOP ORGANIC ===== -->
+    <div class="content" id="page-shop" style="padding:22px;">
+        <div class="page-title">Shop Organic</div>
+        <div class="page-sub">Browse fresh certified organic produce and place bulk orders</div>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon ci-green"><i class="fa-solid fa-wheat-awn"></i></div>
+                <div><h2>218</h2><p>Products Available</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-yellow"><i class="fa-solid fa-clock"></i></div>
+                <div><h2>42</h2><p>Low Stock — Order Soon</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-lime"><i class="fa-solid fa-truck-fast"></i></div>
+                <div><h2>1.9 Days</h2><p>Avg Delivery Time</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-teal"><i class="fa-solid fa-certificate"></i></div>
+                <div><h2>100%</h2><p>Certified Organic</p></div>
+            </div>
+        </div>
+
+        <div class="table-box">
+            <div class="table-header">
+                <h2>Available Produce</h2>
+                <div style="display:flex;gap:10px;">
+                    <button class="btn-outline errorpage">Filter by Category</button>
+                    <button class="btn-green errorpage">🛒 Place Bulk Order</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Batch ID</th>
+                        <th>Produce</th>
+                        <th>Category</th>
+                        <th>Farm Plot</th>
+                        <th>Price / kg</th>
+                        <th>Stock (kg)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#CROP-401</td>
+                        <td>🌿 Organic Turmeric</td>
+                        <td>Spices</td>
+                        <td>Plot A — Madurai</td>
+                        <td>₹350/kg</td>
+                        <td>3,200</td>
+                        <td><span class="status s-active">In Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>#CROP-402</td>
+                        <td>🥬 Baby Spinach</td>
+                        <td>Leafy Greens</td>
+                        <td>Plot B — Ooty</td>
+                        <td>₹240/kg</td>
+                        <td>180</td>
+                        <td><span class="status s-pending">Low Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>#CROP-403</td>
+                        <td>🍅 Cherry Tomatoes</td>
+                        <td>Vegetables</td>
+                        <td>Plot C — Coimbatore</td>
+                        <td>₹190/kg</td>
+                        <td>2,100</td>
+                        <td><span class="status s-active">In Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>#CROP-404</td>
+                        <td>🌱 Moringa Powder</td>
+                        <td>Superfoods</td>
+                        <td>Plot D — Dindigul</td>
+                        <td>₹640/kg</td>
+                        <td>90</td>
+                        <td><span class="status s-pending">Low Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>#CROP-405</td>
+                        <td>🥦 Kale Microgreens</td>
+                        <td>Microgreens</td>
+                        <td>Plot E — Chennai</td>
+                        <td>₹600/kg</td>
+                        <td>0</td>
+                        <td><span class="status s-closed">Out of Stock</span></td>
+                    </tr>
+                    <tr>
+                        <td>#CROP-406</td>
+                        <td>🌾 Wheatgrass Powder</td>
+                        <td>Superfoods</td>
+                        <td>Plot F — Salem</td>
+                        <td>₹580/kg</td>
+                        <td>520</td>
+                        <td><span class="status s-active">In Stock</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid-2">
+            <div class="info-box">
+                <h3><i class="fa-solid fa-chart-pie"></i> Browse by Category</h3>
+                <div class="info-row"><span class="info-label">🥦 Vegetables</span><span class="info-value">68 products</span></div>
+                <div class="info-row"><span class="info-label">🥬 Leafy Greens</span><span class="info-value">44 products</span></div>
+                <div class="info-row"><span class="info-label">🌿 Spices & Herbs</span><span class="info-value">38 products</span></div>
+                <div class="info-row"><span class="info-label">🍎 Fruits</span><span class="info-value">30 products</span></div>
+                <div class="info-row"><span class="info-label">💚 Superfoods</span><span class="info-value">24 products</span></div>
+                <div class="info-row"><span class="info-label">🌱 Microgreens</span><span class="info-value">14 products</span></div>
+            </div>
+            <div class="info-box">
+                <h3><i class="fa-solid fa-star"></i> Why Buy From Stackly?</h3>
+                <div class="info-row"><span class="info-label">NPOP & USDA Certified</span><span class="info-value" style="color:#2e7d32;">✅ Verified</span></div>
+                <div class="info-row"><span class="info-label">Farm-to-Door Delivery</span><span class="info-value" style="color:#2e7d32;">1.9 Days Avg</span></div>
+                <div class="info-row"><span class="info-label">No Pesticides Used</span><span class="info-value" style="color:#2e7d32;">✅ Confirmed</span></div>
+                <div class="info-row"><span class="info-label">Cold Chain Maintained</span><span class="info-value" style="color:#2e7d32;">✅ Always</span></div>
+                <div class="info-row"><span class="info-label">Bulk Discounts</span><span class="info-value" style="color:#2e7d32;">Up to 12% Off</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MY ORDERS ===== -->
+    <div class="content" id="page-orders" style="padding:22px;">
+        <div class="page-title">My Orders</div>
+        <div class="page-sub">View and manage all your produce orders from Stackly Farms</div>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon ci-green"><i class="fa-solid fa-circle-check"></i></div>
+                <div><h2>18</h2><p>Delivered</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-blue"><i class="fa-solid fa-truck"></i></div>
+                <div><h2>3</h2><p>In Transit</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-yellow"><i class="fa-solid fa-hourglass-half"></i></div>
+                <div><h2>1</h2><p>Processing</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-red"><i class="fa-solid fa-xmark-circle"></i></div>
+                <div><h2>0</h2><p>Cancelled</p></div>
+            </div>
+        </div>
+
+        <div class="table-box">
+            <div class="table-header">
+                <h2>All Orders</h2>
+                <div style="display:flex;gap:10px;">
+                    <button class="btn-outline errorpage">Export</button>
+                    <button class="btn-green" onclick="switchPage('shop')">+ New Order</button>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Produce</th>
+                        <th>Qty</th>
+                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#ORD-2201</td>
+                        <td>Organic Turmeric</td>
+                        <td>25 kg</td>
+                        <td>₹8,750</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="status s-active">Delivered</span></td>
+                        <td>15 Jun 2026</td>
+                    </tr>
+                    <tr>
+                        <td>#ORD-2202</td>
+                        <td>Baby Spinach</td>
+                        <td>10 kg</td>
+                        <td>₹2,400</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="status s-blue">In Transit</span></td>
+                        <td>20 Jun 2026</td>
+                    </tr>
+                    <tr>
+                        <td>#ORD-2203</td>
+                        <td>Cherry Tomatoes</td>
+                        <td>50 kg</td>
+                        <td>₹9,500</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="status s-pending">Processing</span></td>
+                        <td>21 Jun 2026</td>
+                    </tr>
+                    <tr>
+                        <td>#ORD-2204</td>
+                        <td>Moringa Powder</td>
+                        <td>5 kg</td>
+                        <td>₹3,200</td>
+                        <td><span class="status s-pending">Pending</span></td>
+                        <td><span class="status s-pending">On Hold</span></td>
+                        <td>22 Jun 2026</td>
+                    </tr>
+                    <tr>
+                        <td>#ORD-2200</td>
+                        <td>Kale Microgreens</td>
+                        <td>8 kg</td>
+                        <td>₹4,800</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="status s-active">Delivered</span></td>
+                        <td>10 Jun 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid-2">
+            <div class="info-box">
+                <h3><i class="fa-solid fa-chart-bar"></i> My Spend by Category</h3>
+                <div class="report-card">
+                    <div class="report-title">Spices & Herbs</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+                    <div class="progress-label"><span>₹1.8L</span><span>75%</span></div>
+                </div>
+                <div class="report-card">
+                    <div class="report-title">Vegetables</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+                    <div class="progress-label"><span>₹1.2L</span><span>55%</span></div>
+                </div>
+                <div class="report-card">
+                    <div class="report-title">Superfoods</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:35%"></div></div>
+                    <div class="progress-label"><span>₹0.7L</span><span>35%</span></div>
+                </div>
+            </div>
+            <div class="info-box">
+                <h3><i class="fa-solid fa-file-lines"></i> Order Documents</h3>
+                <div class="info-row">
+                    <span class="info-label">📄 Invoice_ORD2201.pdf</span>
+                    <span class="info-value errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📄 Invoice_ORD2202.pdf</span>
+                    <span class="info-value errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📄 CertificateOfOrigin.pdf</span>
+                    <span class="info-value errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📄 OrganicCert_2026.pdf</span>
+                    <span class="info-value errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TRACK DELIVERIES ===== -->
+    <div class="content" id="page-deliveries" style="padding:22px;">
+        <div class="page-title">Track Deliveries</div>
+        <div class="page-sub">Real-time status of your incoming produce shipments</div>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon ci-blue"><i class="fa-solid fa-truck-fast"></i></div>
+                <div><h2>3</h2><p>Active Shipments</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-lime"><i class="fa-solid fa-calendar-check"></i></div>
+                <div><h2>2</h2><p>Arriving Today</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-yellow"><i class="fa-solid fa-hourglass-half"></i></div>
+                <div><h2>1</h2><p>Scheduled</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-teal"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <div><h2>1.9 Days</h2><p>Avg Delivery Time</p></div>
+            </div>
+        </div>
+
+        <div class="table-box">
+            <div class="table-header"><h2>Live Tracking</h2></div>
+
+            <!-- Order Track 1 -->
+            <div style="border:1px solid #e0f0e0;border-radius:14px;padding:18px;margin-bottom:14px;background:#f9fdf9;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:8px;">
+                    <span style="color:#1a2e1a;font-weight:600;font-size:14px;">🥬 Baby Spinach 10kg — #ORD-2202</span>
+                    <span class="status s-blue">In Transit</span>
+                </div>
+                <div style="color:#7a9a7a;font-size:12px;margin-bottom:14px;">Dispatched from Ooty Cold Storage • ETA: 23 Jun 2026</div>
+                <div class="track-steps">
+                    <div class="track-step">
+                        <div class="step-circle done"><i class="fa-solid fa-check"></i></div>
+                        <div class="step-label">Order Placed</div>
+                    </div>
+                    <div class="step-connector done"></div>
+                    <div class="track-step">
+                        <div class="step-circle done"><i class="fa-solid fa-check"></i></div>
+                        <div class="step-label">Harvested</div>
+                    </div>
+                    <div class="step-connector done"></div>
+                    <div class="track-step">
+                        <div class="step-circle done"><i class="fa-solid fa-check"></i></div>
+                        <div class="step-label">Packed</div>
+                    </div>
+                    <div class="step-connector done"></div>
+                    <div class="track-step">
+                        <div class="step-circle active"><i class="fa-solid fa-truck"></i></div>
+                        <div class="step-label">In Transit</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="track-step">
+                        <div class="step-circle pending"><i class="fa-solid fa-house"></i></div>
+                        <div class="step-label">Delivered</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Track 2 -->
+            <div style="border:1px solid #e0f0e0;border-radius:14px;padding:18px;margin-bottom:14px;background:#f9fdf9;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:8px;">
+                    <span style="color:#1a2e1a;font-weight:600;font-size:14px;">🍅 Cherry Tomatoes 50kg — #ORD-2203</span>
+                    <span class="status s-pending">Processing</span>
+                </div>
+                <div style="color:#7a9a7a;font-size:12px;margin-bottom:14px;">Packing in progress at Coimbatore Logistics Hub • ETA: 26 Jun 2026</div>
+                <div class="track-steps">
+                    <div class="track-step">
+                        <div class="step-circle done"><i class="fa-solid fa-check"></i></div>
+                        <div class="step-label">Order Placed</div>
+                    </div>
+                    <div class="step-connector done"></div>
+                    <div class="track-step">
+                        <div class="step-circle done"><i class="fa-solid fa-check"></i></div>
+                        <div class="step-label">Harvested</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="track-step">
+                        <div class="step-circle active"><i class="fa-solid fa-box"></i></div>
+                        <div class="step-label">Packing</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="track-step">
+                        <div class="step-circle pending"><i class="fa-solid fa-truck"></i></div>
+                        <div class="step-label">In Transit</div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="track-step">
+                        <div class="step-circle pending"><i class="fa-solid fa-house"></i></div>
+                        <div class="step-label">Delivered</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3><i class="fa-solid fa-calendar-check"></i> Upcoming Scheduled Deliveries</h3>
+            <div class="meeting-card">
+                <div class="meeting-date">
+                    <div class="meeting-day">28</div>
+                    <div class="meeting-month">JUN</div>
+                </div>
+                <div>
+                    <div class="meeting-title">Moringa Powder 5kg — #ORD-2204</div>
+                    <div class="meeting-meta">
+                        <span><i class="fa-solid fa-clock"></i> 10:00 AM</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Your Warehouse, Chennai</span>
+                        <span><i class="fa-solid fa-user"></i> Arjun Patel</span>
+                    </div>
+                </div>
+                <span class="badge s-pending" style="margin-left:auto;white-space:nowrap;">Awaiting Payment</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== INVOICES & PAYMENTS ===== -->
+    <div class="content" id="page-invoices" style="padding:22px;">
+        <div class="page-title">Invoices & Payments</div>
+        <div class="page-sub">View your billing history and manage outstanding payments</div>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon ci-green"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                <div><h2>₹4.2L</h2><p>Total Paid</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-yellow"><i class="fa-solid fa-hourglass-half"></i></div>
+                <div><h2>₹3,200</h2><p>Pending Payment</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-lime"><i class="fa-solid fa-receipt"></i></div>
+                <div><h2>22</h2><p>Total Invoices</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon ci-teal"><i class="fa-solid fa-star"></i></div>
+                <div><h2>1,240</h2><p>Loyalty Points</p></div>
+            </div>
+        </div>
+
+        <div class="table-box">
+            <div class="table-header">
+                <h2>Invoice History</h2>
+                <button class="btn-outline errorpage">Export All</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Invoice No</th>
+                        <th>Order ID</th>
+                        <th>Produce</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>INV-4401</td>
+                        <td>#ORD-2201</td>
+                        <td>Organic Turmeric 25kg</td>
+                        <td>₹8,750</td>
+                        <td>15 Jun 2026</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span></td>
+                    </tr>
+                    <tr>
+                        <td>INV-4402</td>
+                        <td>#ORD-2202</td>
+                        <td>Baby Spinach 10kg</td>
+                        <td>₹2,400</td>
+                        <td>20 Jun 2026</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span></td>
+                    </tr>
+                    <tr>
+                        <td>INV-4403</td>
+                        <td>#ORD-2203</td>
+                        <td>Cherry Tomatoes 50kg</td>
+                        <td>₹9,500</td>
+                        <td>21 Jun 2026</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span></td>
+                    </tr>
+                    <tr>
+                        <td>INV-4404</td>
+                        <td>#ORD-2204</td>
+                        <td>Moringa Powder 5kg</td>
+                        <td>₹3,200</td>
+                        <td>22 Jun 2026</td>
+                        <td><span class="status s-pending">Pending</span></td>
+                        <td><button class="btn-green errorpage" style="padding:6px 14px;font-size:12px;">Pay Now</button></td>
+                    </tr>
+                    <tr>
+                        <td>INV-4400</td>
+                        <td>#ORD-2200</td>
+                        <td>Kale Microgreens 8kg</td>
+                        <td>₹4,800</td>
+                        <td>10 Jun 2026</td>
+                        <td><span class="status s-active">Paid</span></td>
+                        <td><span class="errorpage" style="color:#43a047;font-size:12px;cursor:pointer;">Download</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== PROFILE & SETTINGS ===== -->
+    <div class="content" id="page-settings" style="padding:22px;">
+        <div class="page-title">Profile & Settings</div>
+        <div class="page-sub">Manage your buyer profile, delivery address and account preferences</div>
+
+        <div class="grid-2">
+            <div>
+                <div class="setting-section">
+                    <h3><i class="fa-solid fa-store"></i> Buyer Profile</h3>
+                    <label style="color:#3a5a3a;font-size:12px;">Business Name</label>
+                    <input class="input-field" value="Nature's Basket">
+                    <label style="color:#3a5a3a;font-size:12px;">Email Address</label>
+                    <input class="input-field" value="buyer@naturesbasket.com">
+                    <label style="color:#3a5a3a;font-size:12px;">Contact Number</label>
+                    <input class="input-field" value="+91 98765 43210">
+                    <label style="color:#3a5a3a;font-size:12px;">Delivery Address</label>
+                    <input class="input-field" value="42 Green Park, Anna Nagar, Chennai - 600040">
+                    <button class="btn-green" style="width:100%;padding:12px;border-radius:12px;margin-top:4px;">Save Changes</button>
+                </div>
+
+                <div class="setting-section">
+                    <h3><i class="fa-solid fa-lock"></i> Security Settings</h3>
+                    <label style="color:#3a5a3a;font-size:12px;">Current Password</label>
+                    <div class="passbox">
+                        <input class="input-field" type="password" placeholder="Enter Current Password">
+                        <span class="material-symbols-outlined pass-icon">visibility_off</span>
+                    </div>
+                    <label style="color:#3a5a3a;font-size:12px;">New Password</label>
+                    <div class="passbox">
+                        <input class="input-field" type="password" placeholder="Enter New Password">
+                        <span class="material-symbols-outlined pass-icon">visibility_off</span>
+                    </div>
+                    <button class="btn-green" style="width:100%;padding:12px;border-radius:12px;margin-top:4px;">Change Password</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="setting-section">
+                    <h3><i class="fa-solid fa-bell"></i> Notifications</h3>
+                    <div class="setting-row">
+                        <div><div class="setting-label">Order Updates</div><div class="setting-desc">Status changes on your orders</div></div>
+                        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                    </div>
+                    <div class="setting-row">
+                        <div><div class="setting-label">Delivery Alerts</div><div class="setting-desc">Notify when shipment is out for delivery</div></div>
+                        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                    </div>
+                    <div class="setting-row">
+                        <div><div class="setting-label">Payment Reminders</div><div class="setting-desc">Remind for pending invoices</div></div>
+                        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                    </div>
+                    <div class="setting-row">
+                        <div><div class="setting-label">New Season Produce</div><div class="setting-desc">Notify when new crops are available</div></div>
+                        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                    </div>
+                </div>
+
+                <div class="setting-section">
+                    <h3><i class="fa-solid fa-sliders"></i> Preferences</h3>
+                    <div class="setting-row">
+                        <div><div class="setting-label">Auto-Reorder</div><div class="setting-desc">Auto-place recurring orders</div></div>
+                        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+                    </div>
+                    <div class="setting-row">
+                        <div><div class="setting-label">Invoice Auto-Download</div><div class="setting-desc">Download invoices automatically</div></div>
+                        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                    </div>
+                    <div class="setting-row">
+                        <div><div class="setting-label">Two-Factor Authentication</div><div class="setting-desc">Extra account security</div></div>
+                        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                    </div>
+                </div>
+
+                <div class="setting-section">
+                    <h3><i class="fa-solid fa-headset"></i> My Account Manager</h3>
+                    <div class="info-row"><span class="info-label">Sales Rep</span><span class="info-value">Meena Sundar</span></div>
+                    <div class="info-row"><span class="info-label">Email</span><span class="info-value">meena@stackly.com</span></div>
+                    <div class="info-row"><span class="info-label">Phone</span><span class="info-value">+91 90000 12345</span></div>
+                    <div class="info-row"><span class="info-label">Support Hours</span><span class="info-value">Mon–Sat, 8AM–6PM</span></div>
+                    <button class="btn-green" style="width:100%;margin-top:14px;padding:10px;border-radius:10px;">Contact Support</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- end .main -->
+
+<script>
+    const menuItems = document.querySelectorAll('.menu li[data-page]');
+        const pages = document.querySelectorAll('.content');
+        const pageTitle = document.getElementById('pageTitle');
+        const pageTitles = {
+            dashboard: 'Dashboard',
+            clients: 'Buyers & Partners',
+            projects: 'Crop Inventory',
+            meetings: 'Orders & Deliveries',
+            reports: 'Sales & Analytics',
+            settings: 'Settings'
+        };
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                const page = item.dataset.page;
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById('page-' + page).classList.add('active');
+                pageTitle.textContent = pageTitles[page] || page;
+                document.getElementById('sidebar').classList.remove('showSidebar');
+            });
+        });
+
+        document.getElementById('menuBtn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.add('showSidebar');
+        });
+        document.getElementById('closeBtn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.remove('showSidebar');
+        });
+
+        document.getElementById('logoutItem').addEventListener('click', () => {
+            localStorage.removeItem('adminEmail');
+            window.location.href = 'index.html';
+        });
+
+        const savedEmail = localStorage.getItem('adminEmail');
+        if (savedEmail) {
+            document.getElementById('adminEmail').innerText = savedEmail;
+            document.getElementById('avatarEl').innerText = savedEmail.charAt(0).toUpperCase();
+        }
+
+        /* Password eye icons */
+        const passeye = document.querySelectorAll(".pass-icon");
+        passeye.forEach((eyebtn) => {
+            const input = eyebtn.parentElement.querySelector("input");
+            eyebtn.addEventListener("click", () => {
+                if (input.type === "password") {
+                    input.type = "text";
+                    eyebtn.textContent = "visibility";
+                } else {
+                    input.type = "password";
+                    eyebtn.textContent = "visibility_off";
+                }
+            });
+        });
+
+        /* Input validation */
+        /* Input validation */
+        const farmName = document.querySelector('input[value="Stackly Organic Farms"]');
+        const emailField = document.querySelector('input[value="admin@stackly.com"]');
+        const phoneField = document.querySelector('input[value="+91 98765 43210"]');
+        const addressField = document.querySelector('input[value="12 Organic Valley, Madurai - 625001"]');
+        const currentPassword = document.querySelector('input[placeholder="Enter Current Password"]');
+        const newPassword = document.querySelector('input[placeholder="Enter New Password"]');
+
+        if (farmName) {
+            farmName.addEventListener("input", () => {
+                farmName.value = farmName.value.replace(/[^a-zA-Z\s.&']/g, '');
+            });
+        }
+
+        if (phoneField) {
+            phoneField.addEventListener("input", () => {
+                phoneField.value = phoneField.value.replace(/[^0-9+ ]/g, '');
+            });
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        const saveBtn = document.querySelector('.setting-section .btn-green');
+
+        if (saveBtn) {
+            saveBtn.addEventListener("click", () => {
+
+                if (
+                    !farmName.value.trim() ||
+                    !emailField.value.trim() ||
+                    !phoneField.value.trim() ||
+                    !addressField.value.trim()
+                ) {
+                    alert("Please fill all fields");
+                    return;
+                }
+
+                if (!emailPattern.test(emailField.value)) {
+                    alert("Please enter a valid email");
+                    return;
+                }
+
+                // Phone number must contain at least 10 digits
+                const phoneDigits = phoneField.value.replace(/\D/g, '');
+
+                if (phoneDigits.length < 10) {
+                    alert("Phone number must contain at least 10 digits");
+                    return;
+                }
+
+                alert("Farm Profile Updated Successfully ✅");
+            });
+        }
+
+        const passwordBtn = document.querySelectorAll('.setting-section .btn-green')[1];
+
+        if (passwordBtn) {
+            passwordBtn.addEventListener("click", () => {
+
+                if (!currentPassword.value.trim() || !newPassword.value.trim()) {
+                    alert("Please fill all password fields");
+                    return;
+                }
+
+                if (newPassword.value.length < 6) {
+                    alert("New Password must be at least 6 characters");
+                    return;
+                }
+
+                alert("Password Changed Successfully ✅");
+
+                currentPassword.value = "";
+                newPassword.value = "";
+            });
+        }
+
+        /* Error page redirect */
+        document.querySelectorAll('.errorpage').forEach(item => {
+            item.addEventListener('click', () => { window.location.href = "404.html"; });
+        });
+</script>
+</body>
+</html>
