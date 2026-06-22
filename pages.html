@@ -255,7 +255,7 @@
 
     .footer {
         font-family: "Noto Sans", sans-serif;
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.767), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
+         background: linear-gradient(90deg, rgba(0, 0, 0, 0.849), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -894,6 +894,7 @@
     padding-top:14px;
     margin-top:auto;
     border-top:1px solid rgba(0,180,0,0.14);
+    width: 100%;
 }
 
 .author-av{
@@ -1541,6 +1542,23 @@
     }
     }
 
+       .blog-footer-row{
+           display:flex;
+           align-items:center;
+           justify-content:space-between;
+           flex-wrap:wrap;
+           gap:12px
+        }
+
+
+
+    @media (max-width:660px) {
+        .blog-footer-row{
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
    
 </style>
 
@@ -1621,7 +1639,7 @@
                 <h2 class="sec-title">Fresh Stories From the Farm</h2>
                 <div class="divider" style="margin-bottom:18px"></div>
                 <div class="filter-tabs">
-                    <button class="ftab active">All</button>
+                    <button class="ftab active errorpage">All</button>
                     <button class="ftab errorpage">Farming Tips</button>
                     <button class="ftab errorpage">Nutrition</button>
                     <button class="ftab errorpage">Sustainability</button>
@@ -1652,7 +1670,7 @@
                     <p>With soil degradation affecting over 30% of India's farmland, the shift to chemical-free methods
                         is no longer optional — it's a necessity for the next generation.</p>
                     <div class="blog-footer-row"
-                        style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+                       >
                         <a href="404.html" class="blog-read">Read Full Article <span
                                 class="material-symbols-outlined">arrow_forward</span></a>
                         <div class="blog-author">
@@ -1680,6 +1698,7 @@
                     <h3>5 Seasonal Vegetables That Boost Immunity This Monsoon</h3>
                     <p>Nature grows exactly what your body needs each season. Here's what to stock up on from your local
                         organic farm.</p>
+
                     <a href="404.html" class="blog-read">Read More <span
                             class="material-symbols-outlined">arrow_forward</span></a>
                     <div class="blog-author" style="margin-top:12px">

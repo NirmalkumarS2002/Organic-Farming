@@ -254,8 +254,7 @@
 
     .footer {
         font-family: "Noto Sans", sans-serif;
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.767), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
-        background-position: center;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.849), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
         background-repeat: no-repeat;
         background-size: cover;
         color: white;
@@ -1635,9 +1634,9 @@
             <input class="cta-inp" type="tel"   placeholder="Phone Number">
             <input class="cta-inp" type="email" placeholder="Email Address">
         </div>
-        <a href="#" class="green-btn">
+        <button class="green-btn fagsubmit">
             Request a Callback <span class="material-symbols-outlined">arrow_outward</span>
-        </a>
+        </button>
         <p class="cta-note">We respect your privacy. No spam, ever.</p>
     </div>
  
@@ -1818,6 +1817,107 @@
             if (!isOpen) item.classList.add('open');
         });
     });
+
+    
+    //fag farm
+
+    const callbackBtn = document.querySelector('.fagsubmit');
+
+callbackBtn.addEventListener('click', function (e) {
+
+    e.preventDefault();
+
+    const nameInput = document.querySelectorAll('.cta-inp')[0];
+    const phoneInput = document.querySelectorAll('.cta-inp')[1];
+    const emailInput = document.querySelectorAll('.cta-inp')[2];
+
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const email = emailInput.value.trim();
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Reset Borders
+    nameInput.style.borderColor = '';
+    phoneInput.style.borderColor = '';
+    emailInput.style.borderColor = '';
+
+    // Name Validation
+    if (!name) {
+        nameInput.style.borderColor = '#ff4d4d';
+               alert('Please fill all fields');
+        nameInput.focus();
+        return;
+    }
+
+    if (!nameRegex.test(name)) {
+        nameInput.style.borderColor = '#ff4d4d';
+        alert('Name should contain only letters');
+        nameInput.focus();
+        return;
+    }
+
+    // Phone Validation
+    if (!phone) {
+        phoneInput.style.borderColor = '#ff4d4d';
+             alert('Please fill all fields');
+        phoneInput.focus();
+        return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+        phoneInput.style.borderColor = '#ff4d4d';
+        alert('Enter a valid 10 digit mobile number');
+        phoneInput.focus();
+        return;
+    }
+
+    // Email Validation
+    if (!email) {
+        emailInput.style.borderColor = '#ff4d4d';
+             alert('Please fill all fields');
+        emailInput.focus();
+        return;
+    }
+
+    if (!emailRegex.test(email)) {
+        emailInput.style.borderColor = '#ff4d4d';
+        alert('Enter a valid email address');
+        emailInput.focus();
+        return;
+    }
+
+    // Success
+    this.innerHTML = '✓ We will contact you soon!';
+
+    nameInput.value = '';
+    phoneInput.value = '';
+    emailInput.value = '';
+
+    setTimeout(() => {
+        this.innerHTML =
+        'Request a Callback <span class="material-symbols-outlined">arrow_outward</span>';
+    }, 3000);
+
+});
+
+
+// Name field - only letters allowed
+document.querySelectorAll('.cta-inp')[0].addEventListener('input', function () {
+    this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+});
+
+
+// Phone field - only numbers allowed
+document.querySelectorAll('.cta-inp')[1].addEventListener('input', function () {
+    this.value = this.value.replace(/\D/g, '');
+
+    if (this.value.length > 10) {
+        this.value = this.value.slice(0, 10);
+    }
+});
 
 
     </script>

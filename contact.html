@@ -255,7 +255,7 @@
 
     .footer {
         font-family: "Noto Sans", sans-serif;
-        background: linear-gradient(90deg, rgba(0, 0, 0, 0.767), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.849), rgba(8, 0, 0, 0.884)), url(./src/footer.webp);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -1797,7 +1797,7 @@
             <label class="form-check1">
                 <div class="form-check">
                     <input type="checkbox" checked >
-                <span >I agree to the <a href="#">Privacy Policy</a> and consent to being contacted by Stackly regarding
+                <span >I agree to the <a href="404.html">Privacy Policy</a> and consent to being contacted by Stackly regarding
                     my enquiry.</span>
                 </div>
                 <p class="form-check2"></p>
@@ -2319,11 +2319,28 @@ submitBtn.addEventListener("click", function (e) {
     }
 
     if (isValid) {
-        alert("Form submitted successfully!");
-        // document.querySelector("form").submit();
 
-        
-    }
+    const btn = document.querySelector(".submit-btn");
+    const originalText = btn.innerHTML;
+
+    btn.innerHTML = "✓ Submitted Successfully";
+
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+    }, 3000);
+
+    firstName.value = "";
+    lastName.value = "";
+    phone.value = "";
+    email.value = "";
+    message.value = "";
+
+    topic.value = "";
+    document.querySelector(".select-btn span:first-child").textContent =
+        "Select a topic";
+
+    checkbox.checked = false;
+}
 });
 
 
