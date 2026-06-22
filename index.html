@@ -302,9 +302,9 @@
         color: white;
     }
 
-        .hero-section h1 span{
+    .hero-section h1 span {
         color: rgb(0, 255, 0);
-    } 
+    }
 
     .hero-section>p {
         font-size: clamp(14px, 1.7vw, 18px);
@@ -1407,6 +1407,10 @@
             gap: 20px;
         }
     }
+
+    .foot-green{
+        margin-bottom: 30px;
+    }
 </style>
 
 <body>
@@ -1522,7 +1526,7 @@
                     <p>Happy Customers</p>
                 </div>
             </div>
-            <a href="#" class="green-btn">
+            <a href="404.html" class="green-btn">
                 Learn More <span class="material-symbols-outlined">arrow_outward</span>
             </a>
         </div>
@@ -1551,7 +1555,7 @@
                     <p>Seasonal mix of farm-fresh organic vegetables, hand-sorted every morning.</p>
                     <div class="product-price">
                         <span>₹299</span>
-                        <button class="add-btn">Add to Cart</button>
+                        <button class="add-btn errorpage">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -1563,7 +1567,7 @@
                     <p>Naturally ripened fruits with no wax coating — just pure sweetness.</p>
                     <div class="product-price">
                         <span>₹449</span>
-                        <button class="add-btn">Add to Cart</button>
+                        <button class="add-btn errorpage">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -1575,7 +1579,7 @@
                     <p>Native varieties of rice, millet and wheat — rich in nutrients and tradition.</p>
                     <div class="product-price">
                         <span>₹599</span>
-                        <button class="add-btn">Add to Cart</button>
+                        <button class="add-btn errorpage">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -1587,7 +1591,7 @@
                     <p>Tulsi, Neem, Turmeric — grown without pesticides, dried naturally.</p>
                     <div class="product-price">
                         <span>₹349</span>
-                        <button class="add-btn">Add to Cart</button>
+                        <button class="add-btn errorpage">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -1614,42 +1618,48 @@
                 <h3>Home Delivery</h3>
                 <p>Same-day delivery across Karur. Fresh produce reaches your door before noon, packed in eco-friendly
                     boxes.</p>
-                <div class="service-arrow">Know More <span class="material-symbols-outlined">arrow_forward</span></div>
+                <div class="service-arrow errorpage">Know More <span
+                        class="material-symbols-outlined">arrow_forward</span></div>
             </div>
             <div class="service-card">
                 <div class="service-icon"><span class="material-symbols-outlined">agriculture</span></div>
                 <h3>Farm Tours</h3>
                 <p>Book a guided visit to walk through our fields, meet our farmers, and understand how food is grown
                     naturally.</p>
-                <div class="service-arrow">Know More <span class="material-symbols-outlined">arrow_forward</span></div>
+                <div class="service-arrow errorpage">Know More <span
+                        class="material-symbols-outlined">arrow_forward</span></div>
             </div>
             <div class="service-card">
                 <div class="service-icon"><span class="material-symbols-outlined">compost</span></div>
                 <h3>Organic Training</h3>
                 <p>Weekend workshops on terrace gardening, composting, and natural pest control — open to all skill
                     levels.</p>
-                <div class="service-arrow">Know More <span class="material-symbols-outlined">arrow_forward</span></div>
+                <div class="service-arrow errorpage">Know More <span
+                        class="material-symbols-outlined">arrow_forward</span></div>
             </div>
             <div class="service-card">
                 <div class="service-icon"><span class="material-symbols-outlined">subscriptions</span></div>
                 <h3>Weekly Subscription</h3>
                 <p>Get a curated seasonal basket every week at your preferred time. Cancel or pause anytime with no
                     hassle.</p>
-                <div class="service-arrow">Know More <span class="material-symbols-outlined">arrow_forward</span></div>
+                <div class="service-arrow errorpage">Know More <span
+                        class="material-symbols-outlined">arrow_forward</span></div>
             </div>
             <div class="service-card">
                 <div class="service-icon"><span class="material-symbols-outlined">storefront</span></div>
                 <h3>Bulk Orders</h3>
                 <p>Hotels, restaurants and canteens — get fresh organic produce at wholesale rates with priority
                     dispatch.</p>
-                <div class="service-arrow">Know More <span class="material-symbols-outlined">arrow_forward</span></div>
+                <div class="service-arrow errorpage">Know More <span
+                        class="material-symbols-outlined">arrow_forward</span></div>
             </div>
             <div class="service-card">
                 <div class="service-icon"><span class="material-symbols-outlined">verified</span></div>
                 <h3>Certification Help</h3>
                 <p>We help other small farms get organic certified. Our team guides you through the entire documentation
                     process.</p>
-                <div class="service-arrow">Know More <span class="material-symbols-outlined">arrow_forward</span></div>
+                <div class="service-arrow errorpage">Know More <span
+                        class="material-symbols-outlined">arrow_forward</span></div>
             </div>
         </div>
     </section>
@@ -1809,12 +1819,13 @@
         <h2>Ready to Eat Clean and Live Green?</h2>
         <p>Join thousands of families who trust Stackly for pure, organic goodness delivered right to their door.</p>
         <div class="cta-form">
-            <input class="cta-input" type="text" placeholder="Your Name">
-            <input class="cta-input" type="email" placeholder="Your Email">
+            <input id="ctaName" class="cta-input" type="text" placeholder="Your Name">
+            <input id="ctaEmail" class="cta-input" type="email" placeholder="Your Email">
         </div>
-        <a href="#" class="green-btn" style="margin-bottom:50px">
-            Get Started Today <span class="material-symbols-outlined">arrow_outward</span>
-        </a>
+        <button id="footGreenBtn" class="green-btn foot-green">
+            Get Started Today
+            <span class="material-symbols-outlined">arrow_outward</span>
+        </button>
         <div class="cta-contact-row">
             <div class="cta-contact-item">
                 <span class="material-symbols-outlined">phone_in_talk</span>
@@ -1886,7 +1897,7 @@
                     <ul class="footer-links contect">
                         <li><a href="404.html"><span class="material-symbols-outlined">
                                     mail
-                                </span>organic@gmai.com</a></li>
+                                </span>organic@gmail.com</a></li>
                         <li><a href="404.html"><span class="material-symbols-outlined">
                                     phone_in_talk
                                 </span>+91 12345 67890</a></li>
@@ -2042,6 +2053,57 @@
             alert("Thank you for subscribing!");
             footerInput.value = "";
         });
+        //get
+
+        const btn = document.getElementById("footGreenBtn");
+
+btn.addEventListener("click", function () {
+
+    const nameInput = document.getElementById("ctaName");
+    const emailInput = document.getElementById("ctaEmail");
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    if (!name) {
+        alert("Enter your name");
+        return;
+    }
+
+    if (!nameRegex.test(name)) {
+        alert("Name should contain only letters");
+        return;
+    }
+
+    if (!email) {
+        alert("Enter your email");
+        return;
+    }
+
+    if (!emailRegex.test(email)) {
+        alert("Enter a valid email");
+        return;
+    }
+
+    this.innerHTML = "✓ We will contact you soon!";
+
+    nameInput.value = "";
+    emailInput.value = "";
+
+    setTimeout(() => {
+        this.innerHTML = `
+            Get Started Today
+            <span class="material-symbols-outlined">arrow_outward</span>
+        `;
+    }, 3000);
+});
+
+document.getElementById("ctaName").addEventListener("input", function () {
+    this.value = this.value.replace(/[^A-Za-z\s]/g, "");
+});
 
 
     </script>

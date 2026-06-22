@@ -576,7 +576,7 @@
         padding: 130px 8% 90px;
         background:
             linear-gradient(135deg, rgba(0, 15, 0, 0.88) 50%, rgba(0, 30, 0, 0.65)),
-            url('https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1400&q=80') center/cover no-repeat;
+            url('./src/contact-bg.webp') center/cover no-repeat;
         position: relative;
         overflow: hidden;
     }
@@ -893,6 +893,13 @@
         gap: 10px;
         margin-bottom: 22px;
         cursor: pointer;
+    }
+
+    .form-check1{
+       display: flex;
+       flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 22px;
     }
 
     .form-check input[type="checkbox"] {
@@ -1520,6 +1527,98 @@
         }
 
     }
+
+    .custom-select{
+    position:relative;
+    width:100%;
+    font-family:inherit;
+}
+
+.select-btn{
+    width:100%;
+    height:58px;
+    padding:0 18px;
+    border-radius:14px;
+    border:1px solid rgba(0,255,0,.25);
+    background:linear-gradient(
+        90deg,
+        rgba(0,40,0,.85),
+        rgba(0,60,0,.65)
+    );
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#fff;
+    cursor:pointer;
+    transition:.35s;
+}
+
+.select-btn:hover{
+    border-color:#00ff44;
+    box-shadow:0 0 18px rgba(0,255,80,.18);
+}
+
+.select-btn span:first-child{
+    font-size:15px;
+}
+
+.arrow{
+    transition:.35s;
+    color:#6cff6c;
+}
+
+.custom-select.active .arrow{
+    transform:rotate(180deg);
+}
+
+.options{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    width:100%;
+    background:rgba(0,35,0,.98);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(0,255,0,.2);
+    border-radius:16px;
+    overflow:hidden;
+    list-style:none;
+    padding:8px;
+    margin:0;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:.35s;
+    z-index:1000;
+}
+
+.custom-select.active .options{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.options li{
+    padding:14px 16px;
+    border-radius:10px;
+    color:#d9ffd9;
+    cursor:pointer;
+    transition:.3s;
+    font-size:14px;
+}
+
+.options li:hover{
+    background:linear-gradient(
+        90deg,
+        rgba(0,255,0,.15),
+        rgba(0,255,100,.08)
+    );
+    color:#fff;
+    padding-left:22px;
+}
+
+.options li:not(:last-child){
+    margin-bottom:4px;
+}
 </style>
 
 <body>
@@ -1571,6 +1670,8 @@
 ════════════════════════════════════════════ -->
     <section class="contact-hero">
         <div class="contact-hero-inner">
+
+           
             <div class="eyebrow eyebrow-light">
                 <span class="material-symbols-outlined">connect_without_contact</span>
                 Get In Touch
@@ -1581,7 +1682,8 @@
          
         </div>
         <div class="contact-breadcrumb">
-            <a href="#">Home</a>
+
+            <a href="index.html">Home</a>
             <span class="sep">›</span>
             <strong>Contact</strong>
         </div>
@@ -1603,7 +1705,7 @@
             <p>We respond to all queries within 2 hours on business days. For urgent orders, WhatsApp is the fastest
                 way.</p>
 
-            <a href="tel:+911234567890" class="info-card">
+            <a href="404.html" class="info-card">
                 <div class="info-icon"><span class="material-symbols-outlined">phone_in_talk</span></div>
                 <div class="info-text">
                     <h4>Phone & WhatsApp</h4>
@@ -1612,7 +1714,7 @@
                 </div>
             </a>
 
-            <a href="mailto:organic@gmail.com" class="info-card">
+            <a href="404.html" class="info-card">
                 <div class="info-icon"><span class="material-symbols-outlined">mail</span></div>
                 <div class="info-text">
                     <h4>Email Us</h4>
@@ -1621,7 +1723,7 @@
                 </div>
             </a>
 
-            <a href="#" class="info-card">
+            <a href="404.html" class="info-card">
                 <div class="info-icon"><span class="material-symbols-outlined">location_on</span></div>
                 <div class="info-text">
                     <h4>Farm Address</h4>
@@ -1667,16 +1769,24 @@
 
             <div class="form-group">
                 <label>What are you enquiring about?</label>
-                <select class="form-sel">
-                    <option value="" disabled selected>Select a topic</option>
-                    <option>Home Delivery Order</option>
-                    <option>Weekly Subscription</option>
-                    <option>Farm Tour Booking</option>
-                    <option>Bulk / Restaurant Order</option>
-                    <option>Organic Workshop</option>
-                    <option>Certification Help</option>
-                    <option>General Enquiry</option>
-                </select>
+              <div class="custom-select" id="topicSelect">
+    <div class="select-btn">
+        <span>Select a topic</span>
+        <span class="material-symbols-outlined arrow">expand_more</span>
+    </div>
+
+    <ul class="options">
+        <li data-value="delivery">Home Delivery Order</li>
+        <li data-value="subscription">Weekly Subscription</li>
+        <li data-value="tour">Farm Tour Booking</li>
+        <li data-value="bulk">Bulk / Restaurant Order</li>
+        <li data-value="workshop">Organic Workshop</li>
+        <li data-value="certification">Certification Help</li>
+        <li data-value="general">General Enquiry</li>
+    </ul>
+
+    <input type="hidden" name="topic" id="selectedTopic">
+</div>
             </div>
 
             <div class="form-group">
@@ -1684,11 +1794,15 @@
                 <textarea class="form-ta" placeholder="Tell us how we can help you..."></textarea>
             </div>
 
-            <label class="form-check">
-                <input type="checkbox" checked>
-                <span>I agree to the <a href="#">Privacy Policy</a> and consent to being contacted by Stackly regarding
+            <label class="form-check1">
+                <div class="form-check">
+                    <input type="checkbox" checked >
+                <span >I agree to the <a href="#">Privacy Policy</a> and consent to being contacted by Stackly regarding
                     my enquiry.</span>
+                </div>
+                <p class="form-check2"></p>
             </label>
+                    
 
             <button class="submit-btn">
                 Send Message <span class="material-symbols-outlined">send</span>
@@ -1826,15 +1940,15 @@
                 <div class="team-contacts">
                     <div class="team-contact-card">
                         <img class="team-avatar"
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80"
+                            src="./src/avatar1.webp"
                             alt="Arjun Murugan">
                         <div class="team-contact-info">
                             <h4>Arjun Murugan</h4>
                             <p>Founder — Farm &amp; General Enquiries</p>
                             <div class="team-contact-links">
-                                <a href="tel:+911234567890" class="tc-link"><span
+                                <a href="404.html" class="tc-link"><span
                                         class="material-symbols-outlined">phone_in_talk</span> Call</a>
-                                <a href="mailto:arjun@stackly.in" class="tc-link"><span
+                                <a href="404.html" class="tc-link"><span
                                         class="material-symbols-outlined">mail</span> Email</a>
                             </div>
                         </div>
@@ -1842,15 +1956,15 @@
 
                     <div class="team-contact-card">
                         <img class="team-avatar"
-                            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&q=80"
+                            src="./src/avatar2.webp"
                             alt="Kavitha Rajan">
                         <div class="team-contact-info">
                             <h4>Kavitha Rajan</h4>
                             <p>Agronomist — Workshop &amp; Farm Tour Bookings</p>
                             <div class="team-contact-links">
-                                <a href="tel:+911234567891" class="tc-link"><span
+                                <a href="404.html" class="tc-link"><span
                                         class="material-symbols-outlined">phone_in_talk</span> Call</a>
-                                <a href="mailto:kavitha@stackly.in" class="tc-link"><span
+                                <a href="404.html" class="tc-link"><span
                                         class="material-symbols-outlined">mail</span> Email</a>
                             </div>
                         </div>
@@ -1858,15 +1972,15 @@
 
                     <div class="team-contact-card">
                         <img class="team-avatar"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&q=80"
+                            src="./src/avatar3.webp"
                             alt="Senthil Kumar">
                         <div class="team-contact-info">
                             <h4>Senthil Kumar</h4>
                             <p>Operations — Delivery &amp; Bulk Order Support</p>
                             <div class="team-contact-links">
-                                <a href="tel:+911234567892" class="tc-link"><span
+                                <a href="404.html" class="tc-link"><span
                                         class="material-symbols-outlined">phone_in_talk</span> Call</a>
-                                <a href="mailto:senthil@stackly.in" class="tc-link"><span
+                                <a href="404.html" class="tc-link"><span
                                         class="material-symbols-outlined">mail</span> Email</a>
                             </div>
                         </div>
@@ -1887,7 +2001,7 @@
 
             <!-- Newsletter -->
             <div class="nl-main">
-                <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=80"
+                <img src="./src/blog_8-1024x637-compressed.webp"
                     alt="Farm fresh newsletter">
                 <div class="eyebrow">
                     <span class="material-symbols-outlined">newspaper</span>
@@ -1923,27 +2037,27 @@
                 <div class="divider" style="margin-bottom:14px"></div>
                 <p>Jump straight to the most common things people reach out to us about.</p>
 
-                <a href="#" class="quick-card">
-                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&q=80"
+                <a href="404.html" class="quick-card">
+                    <img src="./src/con-image2.webp"
                         alt="Order fresh produce">
                     <div class="quick-card-body">
                         <div>
                             <h4>Order Fresh Produce</h4>
                             <p>Same-day delivery available</p>
                         </div>
-                        <div class="quick-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+                        <div class="quick-arrow errorpage"><span class="material-symbols-outlined">arrow_forward</span></div>
                     </div>
                 </a>
 
-                <a href="#" class="quick-card">
-                    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=80"
+                <a href="404.html" class="quick-card">
+                    <img src="./src/img7.webp"
                         alt="Book farm tour">
                     <div class="quick-card-body">
                         <div>
                             <h4>Book a Farm Tour</h4>
                             <p>Every Saturday &amp; Sunday</p>
                         </div>
-                        <div class="quick-arrow"><span class="material-symbols-outlined">arrow_forward</span></div>
+                        <div class="quick-arrow errorpage"><span class="material-symbols-outlined">arrow_forward</span></div>
                     </div>
                 </a>
 
@@ -1970,10 +2084,10 @@
 
                 <div class="sotial-icons">
 
-                    <div class="footer-icon"><i class="fa-brands fa-whatsapp errorpage"></i></div>
-                    <div class="footer-icon"><i class="fa-brands fa-instagram errorpage"></i></div>
-                    <div class="footer-icon"><i class="fa-brands fa-x-twitter errorpage"></i></div>
-                    <div class="footer-icon"><i class="fa-brands fa-facebook errorpage"></i></div>
+                    <div class="footer-icon errorpage"><i class="fa-brands fa-whatsapp errorpage"></i></div>
+                    <div class="footer-icon errorpage"><i class="fa-brands fa-instagram errorpage"></i></div>
+                    <div class="footer-icon errorpage"><i class="fa-brands fa-x-twitter errorpage"></i></div>
+                    <div class="footer-icon errorpage"><i class="fa-brands fa-facebook errorpage"></i></div>
 
                 </div>
 
@@ -1993,7 +2107,7 @@
                         <li><a href="pages.html">Pages</a></li>
                         <li><a href="service.html">Service</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="">Products</a></li>
+                        <li><a href="404.html">Products</a></li>
                     </ul>
                 </div>
 
@@ -2009,7 +2123,7 @@
                     <ul class="footer-links contect">
                         <li><a href="404.html"><span class="material-symbols-outlined">
                                     mail
-                                </span>organic@gmai.com</a></li>
+                                </span>organic@gmail.com</a></li>
                         <li><a href="404.html"><span class="material-symbols-outlined">
                                     phone_in_talk
                                 </span>+91 12345 67890</a></li>
@@ -2122,42 +2236,183 @@
 
 
         // Form submit feedback
-        document.querySelector('.submit-btn').addEventListener('click', function () {
-            const inputs = document.querySelectorAll('.form-inp, .form-sel, .form-ta');
-            let valid = true;
-            inputs.forEach(inp => {
-                if (!inp.value.trim()) {
-                    inp.style.borderColor = 'rgba(255,80,80,0.6)';
-                    inp.style.boxShadow = '0 0 8px rgba(255,80,80,0.2)';
-                    valid = false;
-                } else {
-                    inp.style.borderColor = 'rgba(0,255,0,0.25)';
-                    inp.style.boxShadow = 'none';
-                }
-            });
-            if (valid) {
-                this.textContent = '✓ Message Sent!';
-                this.style.background = 'linear-gradient(125deg,rgb(10,120,10),rgb(5,200,5))';
-                setTimeout(() => {
-                    this.innerHTML = 'Send Message <span class="material-symbols-outlined">send</span>';
-                    this.style.background = '';
-                    inputs.forEach(inp => inp.value = '');
-                }, 3000);
-            }
-        });
+const submitBtn = document.querySelector(".submit-btn");
+
+submitBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // Inputs
+    const firstName = document.querySelectorAll(".form-inp")[0];
+    const lastName = document.querySelectorAll(".form-inp")[1];
+    const phone = document.querySelectorAll(".form-inp")[2];
+    const email = document.querySelectorAll(".form-inp")[3];
+    const topic = document.getElementById("selectedTopic");
+    const message = document.querySelector(".form-ta");
+    const checkbox = document.querySelector(".form-check input");
+
+    // Remove old errors
+    document.querySelectorAll(".error-msg").forEach(el => el.remove());
+
+    let isValid = true;
+
+    function showError(element, msg) {
+        const error = document.createElement("small");
+        error.className = "error-msg";
+        error.style.color = "#ff6b6b";
+        error.style.display = "block";
+        error.style.marginTop = "6px";
+        error.innerText = msg;
+
+        element.parentElement.appendChild(error);
+        isValid = false;
+    }
+
+    // Name Validation
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    if (firstName.value.trim() === "") {
+        showError(firstName, "First name is required");
+    } else if (!nameRegex.test(firstName.value.trim())) {
+        showError(firstName, "Only letters allowed");
+    }
+
+    if (lastName.value.trim() === "") {
+        showError(lastName, "Last name is required");
+    } else if (!nameRegex.test(lastName.value.trim())) {
+        showError(lastName, "Only letters allowed");
+    }
+
+    // Phone Validation
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (phone.value.trim() === "") {
+        showError(phone, "Phone number is required");
+    } else if (!phoneRegex.test(phone.value.trim())) {
+        showError(phone, "Enter valid 10 digit number");
+    }
+
+    // Email Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email.value.trim() === "") {
+        showError(email, "Email is required");
+    } else if (!emailRegex.test(email.value.trim())) {
+        showError(email, "Enter valid email address");
+    }
+
+    // Topic Validation
+    if (topic.value === "") {
+        showError(document.querySelector(".custom-select"), "Please select a topic");
+    }
+
+    // Message Validation
+    if (message.value.trim() === "") {
+        showError(message, "Message is required");
+    } else if (message.value.trim().length < 10) {
+        showError(message, "Message must be at least 10 characters");
+    }
+
+    // Checkbox Validation
+    if (!checkbox.checked) {
+        showError(document.querySelector(".form-check2"),
+            "You must accept the Privacy Policy");
+    }
+
+    if (isValid) {
+        alert("Form submitted successfully!");
+        // document.querySelector("form").submit();
+
+        
+    }
+});
+
+
+// Prevent Numbers & Special Characters in Name Fields
+const nameFields = [
+    document.querySelectorAll(".form-inp")[0],
+    document.querySelectorAll(".form-inp")[1]
+];
+
+nameFields.forEach(field => {
+    field.addEventListener("input", function () {
+        this.value = this.value.replace(/[^A-Za-z\s]/g, "");
+    });
+});
+
+// Allow Only Numbers in Phone Field
+const phoneField = document.querySelectorAll(".form-inp")[2];
+
+phoneField.addEventListener("input", function () {
+    this.value = this.value.replace(/\D/g, "");
+
+    if (this.value.length > 10) {
+        this.value = this.value.slice(0, 10);
+    }
+});
 
         // Newsletter
-        document.querySelector('.nl-form .green-btn').addEventListener('click', function (e) {
-            e.preventDefault();
-            const inp = document.querySelector('.nl-inp');
-            if (!inp.value.trim() || !inp.value.includes('@')) {
-                inp.style.borderColor = 'rgba(255,80,80,0.5)';
-                return;
-            }
-            inp.style.borderColor = 'green';
-            this.textContent = '✓ Subscribed!';
-            setTimeout(() => { this.textContent = 'Subscribe →'; inp.value = ''; inp.style.borderColor = ''; }, 3000);
-        });
+   document.querySelector('.nl-form .green-btn').addEventListener('click', function (e) {
+
+    e.preventDefault();
+
+    const inp = document.querySelector('.nl-inp');
+    const email = inp.value.trim();
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email === '') {
+        inp.style.borderColor = '#ff4d4d';
+        inp.focus();
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        inp.style.borderColor = '#ff4d4d';
+        inp.value = '';
+        inp.placeholder = 'Enter a valid email address';
+        inp.focus();
+        return;
+    }
+
+    inp.style.borderColor = 'green';
+
+    const btn = this;
+    btn.innerHTML = '✓ Subscribed!';
+
+    setTimeout(() => {
+        btn.innerHTML = 'Subscribe <span class="material-symbols-outlined">send</span>';
+        inp.value = '';
+        inp.style.borderColor = '';
+        inp.placeholder = 'Enter your email address';
+    }, 3000);
+
+});
+
+        const customSelect = document.querySelector(".custom-select");
+const selectBtn = customSelect.querySelector(".select-btn");
+const selectedText = selectBtn.querySelector("span");
+const options = customSelect.querySelectorAll(".options li");
+const hiddenInput = document.getElementById("selectedTopic");
+
+selectBtn.addEventListener("click", () => {
+    customSelect.classList.toggle("active");
+});
+
+options.forEach(option => {
+    option.addEventListener("click", () => {
+        selectedText.textContent = option.textContent;
+        hiddenInput.value = option.dataset.value;
+        customSelect.classList.remove("active");
+    });
+});
+
+document.addEventListener("click", (e) => {
+    if(!customSelect.contains(e.target)){
+        customSelect.classList.remove("active");
+    }
+
+
+});
 
     </script>
 
