@@ -275,7 +275,7 @@
 
     .footer-box p {
         width: 100%;
-        text-align: justify;
+        text-align: left;
         font-size: 16px;
         line-height: 1.5;
         margin-bottom: 15px;
@@ -1108,7 +1108,7 @@
            SECTION 5 — FAQ + CTA
         ══════════════════════════════════════ */
         .faq-cta-section {
-            padding: 100px 8%;
+            padding: 100px 5%;
             background: #fff;
             display: flex;
             gap: 70px;
@@ -1163,7 +1163,7 @@
             min-width: 280px;
             background: linear-gradient(155deg, #021a02, #003300);
             border-radius: 22px;
-            padding: 48px 38px;
+            padding: 48px 18px;
             border: 1px solid rgba(0,255,0,0.18);
             position: relative;
             overflow: hidden;
@@ -1246,6 +1246,18 @@
             .faq-cta-section { flex-direction: column; gap: 50px; }
             .srv-hero-btns { flex-direction: column; }
         }
+
+       @media (max-width:600px) {
+         .fagsubmit{
+            font-size: 14px;
+            text-wrap: nowrap;
+        }
+
+         .fagsubmit span{
+            font-size: 15px;
+            text-wrap: nowrap;
+        }
+       }
 </style>
 
 <body>

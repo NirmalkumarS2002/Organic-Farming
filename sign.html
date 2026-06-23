@@ -271,7 +271,7 @@
             transform: rotate(180deg);
         }
 
-    
+
 
         @media(max-width:480px) {
             .register-box {
@@ -280,11 +280,11 @@
             }
         }
 
-            input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear,
-input[type="password"]::-webkit-textfield-decoration-container {
-    display: none !important;
-}
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear,
+        input[type="password"]::-webkit-textfield-decoration-container {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -360,7 +360,7 @@ input[type="password"]::-webkit-textfield-decoration-container {
                     <button type="button" class="material-symbols-outlined eye-btn" id="togglePassword"
                         aria-label="Show password">visibility</button>
                 </div>
-            
+
                 <small class="error" id="passwordError"></small>
             </div>
 
@@ -467,17 +467,14 @@ input[type="password"]::-webkit-textfield-decoration-container {
             if (password.length < 8) {
                 document.getElementById('passwordError').innerText = 'Password must be at least 8 characters';
                 valid = false;
-            } 
-            if (confirm !== password) { document.getElementById('confirmError').innerText = 'Passwords do not match'; valid = false; }
-
-            if (valid) {
-                alert('Registration Successful!');
-                this.reset();
-                selectedText.textContent = 'Select User Type';
-                selectedText.classList.remove('chosen');
-                document.getElementById('strengthLabel').textContent = '';
-                for (let i = 1; i <= 4; i++) document.getElementById('s' + i).style.background = '#e5e7eb';
             }
+            if (confirm !== password) { document.getElementById('confirmError').innerText = 'Passwords do not match'; valid = false; }
+            
+            if (valid) {
+                alert("Registration Successful!");
+                window.location.href = "login.html";
+            }
+
         });
     </script>
 </body>
